@@ -23,6 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('filmAdvice.api.urls', namespace='api')),
     path('web/', include('filmAdvice.web.urls', namespace='web')),
-    path('^docs/', include_docs_urls(title='Documentation',
-                                     permission_classes=[DocumentAuthenticated])),
+    path('docs/', include_docs_urls(title='Documentation', public=True)),
 ]
