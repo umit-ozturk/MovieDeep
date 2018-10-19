@@ -33,6 +33,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'filmAdvice.movie',
+    'filmAdvice.system',
+    'filmAdvice.profile',
     'filmAdvice.api',
     'filmAdvice.web'
 ]
