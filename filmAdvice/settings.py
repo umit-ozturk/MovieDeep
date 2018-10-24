@@ -21,7 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -116,7 +115,13 @@ USE_TZ = True
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR + '/media')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR + '/static')
+STATIC_ROOT = os.path.join(BASE_DIR + '/' + 'static')
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR + '/filmAdvice/' + "static-storage"),
+]
+
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -147,6 +152,8 @@ SUIT_CONFIG = {
     # misc
     # 'LIST_PER_PAGE': 15
 }
+
+APP_MAIN_CURRENT_PATH = os.getcwd()
 
 try:
     from filmAdvice.local_settings import *
