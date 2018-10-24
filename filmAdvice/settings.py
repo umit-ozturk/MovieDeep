@@ -21,6 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 ALLOWED_HOSTS = ['*']
 
+AUTH_USER_MODEL = 'profile.UserProfile'
+
 # Application definition
 
 INSTALLED_APPS = [

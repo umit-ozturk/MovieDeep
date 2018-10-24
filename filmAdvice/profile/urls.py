@@ -1,6 +1,8 @@
 from django.urls import path
 from filmAdvice.profile.views import LoginView, LogoutView, RegisterView, ProfileDetailView
 
+app_name = 'profiles'
+
 urlpatterns = [
     path('login/', LoginView.as_view(template_name="auth/login.html"), name='auth_login'),
     path('logout/', LogoutView.as_view(), name='auth_logout'),

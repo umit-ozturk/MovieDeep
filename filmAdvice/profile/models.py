@@ -22,19 +22,18 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField('Oluşturulma Tarihi', auto_now_add=True, editable=False)
     updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False)
 
+    USERNAME_FIELD = 'username'
+
     class Meta:
         verbose_name = 'Kullanıcı'
         verbose_name_plural = 'Kullanıcılar'
         ordering = ('-created_at',)
 
     def __str__(self):
-        return '{}'.format(self.email)
+        return '{}'.format(self.username)
 
     def get_full_name(self):
-        return self.email
+        return self.name
 
     def get_short_name(self):
-        return self.email
-
-    def get_account_name(self):
-        return '{}-{}'.format(self.name.lower(), self.surname.lower())
+        return self.name

@@ -4,14 +4,15 @@ from django.urls import reverse
 from django.views.generic import FormView, CreateView, RedirectView, DetailView
 
 from filmAdvice.profile.mixins import LoginRequiredMixin
+from filmAdvice.profile.forms import RegisterForm
 
 
-class RegistrationView(CreateView):
-    form_class = RegistrationForm
+class RegisterView(CreateView):
+    form_class = RegisterForm
     template_name = "auth/register.html"
 
     def form_valid(self, form):
-        response = super(RegistrationView, self).form_valid(form)
+        response = super(RegisterView, self).form_valid(form)
         user = authenticate(username=form.cleaned_data["username"],
                             password=form.cleaned_data["password1"])
         login(self.request, user)
