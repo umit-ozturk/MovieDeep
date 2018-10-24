@@ -9,7 +9,7 @@ class HomeView(TemplateView):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
-        return super(HomeView, self).get_context_data(moview=self.get_movies(), **kwargs)
+        return super(HomeView, self).get_context_data(movies=self.get_movies(), **kwargs)
 
     def get_movies(self):
         return Movie.objects.all()

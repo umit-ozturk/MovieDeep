@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('filmAdvice.api.urls', namespace='api')),
     path('docs/', include_docs_urls(title='Documentation')),
+    path('', include('filmAdvice.profile.urls', namespace='profiles')),
     path('', HomeView.as_view(), name='home'),
 
 ]
