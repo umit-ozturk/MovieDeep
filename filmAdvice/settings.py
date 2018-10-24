@@ -35,8 +35,7 @@ INSTALLED_APPS = [
     'filmAdvice.movie',
     'filmAdvice.system',
     'filmAdvice.profile',
-    'filmAdvice.api',
-    'filmAdvice.web'
+    'filmAdvice.api'
 ]
 
 ROOT_URLCONF = 'filmAdvice.urls'
