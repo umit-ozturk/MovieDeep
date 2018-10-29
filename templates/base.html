@@ -7,42 +7,41 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Album example for Bootstrap</title>
+    <title>Film Advice Site</title>
     <!-- Bootstrap core CSS -->
     <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
+      <link href="{% static '/css/style.css' %}" rel="stylesheet">
   </head>
 
   <body>
 
     <header>
-      <div class="collapse bg-dark" id="navbarHeader">
+      <div class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
         <div class="container">
-          <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+            <div class="d-flex justify-content-between">
+              <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                <strong>FilmAdvice</strong>
+              </a>
             </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="navbar navbar-dark bg-dark shadow-sm">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-            <strong>Album</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Anasayfa </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profiles:auth_login' %}">Giriş Yap</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profiles:auth_registration' %}">Üye Ol</a>
+              </li>
+            </ul>
         </div>
+
       </div>
     </header>
 
@@ -51,15 +50,62 @@
     {% endblock %}
 
 
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Back to top</a>
-        </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-      </div>
-    </footer>
+<footer id="fh5co-footer" class="fh5co-bg" role="contentinfo">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 fh5co-widget">
+					<h3>A Little About Stamina.</h3>
+					<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+					<p><a class="btn btn-primary" href="#">Become A Member</a></p>
+				</div>
+				<div class="col-md-8">
+					<h3>Classes</h3>
+                    <div class="row">
+					<div class="col-md-4 col-sm-4 col-xs-6">
+						<ul class="fh5co-footer-links">
+							<li><a href="#">Cardio</a></li>
+							<li><a href="#">Body Building</a></li>
+							<li><a href="#">Yoga</a></li>
+							<li><a href="#">Boxing</a></li>
+							<li><a href="#">Running</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-4 col-sm-4 col-xs-6">
+						<ul class="fh5co-footer-links">
+							<li><a href="#">Boxing</a></li>
+							<li><a href="#">Martial Arts</a></li>
+							<li><a href="#">Karate</a></li>
+							<li><a href="#">Kungfu</a></li>
+							<li><a href="#">Basketball</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-4 col-sm-4 col-xs-6">
+						<ul class="fh5co-footer-links">
+							<li><a href="#">Badminton</a></li>
+							<li><a href="#">Body Building</a></li>
+							<li><a href="#">Teams</a></li>
+							<li><a href="#">Advertise</a></li>
+							<li><a href="#">API</a></li>
+						</ul>
+					</div>
+                    </div>
+				</div>
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12 text-center">
+					<p>
+						<small class="block">&copy; 2017 | All Rights Reserved.</small>
+						<small class="block">Powered by  siteName.com</small>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
