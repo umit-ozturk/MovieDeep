@@ -1,6 +1,19 @@
+html {
+  font-size: 0.9rem;
+}
+
 .content-main {
   height: 200vh;
 }
+
+/* Section Bar Start */
+
+.background-image-slide{
+    background-image: url('/media/site/background.jpg');
+    background-size:cover;
+}
+
+/* Footer Start */
 
 .fh5co-bg {
   background-size: cover;
@@ -101,20 +114,22 @@
 
 
 .btn-primary {
-  background: #F85A16;
+  background: #6A1B9A;
   color: #fff;
-  border: 2px solid #F85A16;
+  border: 2px solid #6A1B9A;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background: #f96c2f !important;
-  border-color: #f96c2f !important;
+  background: #4A148C !important;
+  border-color: #4A148C !important;
 }
 .btn-primary.btn-outline {
   background: transparent;
-  color: #F85A16;
-  border: 1px solid #F85A16;
+  color: #4A148C;
+  border: 1px solid #4A148C;
 }
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-  background: #F85A16;
+  background: #6A1B9A;
   color: #fff;
 }
+
+/* Footer Finish */

@@ -1,7 +1,8 @@
 
-/filmAdvice/system/movies.dat
-/filmAdvice/system/ratings.dat
-/filmAdvice/system/tags.dat
+/filmAdvice/system/movies.csv
+/filmAdvice/system/ratings.csv
+/filmAdvice/system/tags.csv
+/filmAdvice/system/links.csv
 # Created by https://www.gitignore.io/api/python,django,pycharm,virtualenv
 
 ### Django ###
