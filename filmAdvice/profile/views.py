@@ -13,6 +13,7 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         response = super(RegisterView, self).form_valid(form)
+        print(response)
         user = authenticate(username=form.cleaned_data["username"],
                             password=form.cleaned_data["password1"])
         login(self.request, user)

@@ -6,8 +6,7 @@ from filmAdvice.profile.constant import *
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('Kullanıcı Adı', unique=True, null=False, blank=False, max_length=100)
     email = models.EmailField('E-posta', unique=True, null=False, blank=False)
-    name = models.CharField('İsim', null=True, blank=True, max_length=100)
-    surname = models.CharField('Soyisim', null=True, blank=True, max_length=100)
+    full_name = models.CharField('İsim', null=True, blank=True, max_length=200)
     phone = models.CharField('Telefon Numarası', null=True, blank=True, max_length=15)
     is_staff = models.BooleanField('Staff Status', default=False)
     status = models.CharField('Üyelik Aşaması', null=True, choices=REGISTER_STATUS, default=EMAIL_CONFIRMATION_NEED,

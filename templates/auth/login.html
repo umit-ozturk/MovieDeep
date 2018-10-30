@@ -1,25 +1,51 @@
 {% extends "base.html" %}
 
     {% block content %}
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <form class="form-signin">
-                  <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                  <label for="inputEmail" class="sr-only">Email address</label>
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                  <label for="inputPassword" class="sr-only">Password</label>
-                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                  <div class="checkbox mb-3">
-                    <label>
-                      <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                  </div>
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                  <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-                </form>
+        <br><br><br><br>
+            <div class="container">
+                <div class="card bg-light">
+                    <div class="row">
+                        <article class="card-body mx-auto" style="max-width: 400px;">
+                            <h4 class="card-title mt-3 text-center">Create Account</h4>
+                            <p class="text-center">Get started with your free account</p>
+                            <p>
+                                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+                                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+                            </p>
+                            <p class="divider-text">
+                                <span class="bg-light">OR</span>
+                            </p>
+                            <form>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                     </div>
+                                    <input name="" class="form-control" placeholder="Email address" type="email">
+                                </div> <!-- form-group// -->
+
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input class="form-control" placeholder="Create password" type="password">
+                                </div> <!-- form-group// -->
+                                <div class="form-group input-group">
+                                    <div class="checkbox mb-3">
+                                      <label>
+                                        <input type="checkbox" value="remember-me"> Remember me
+                                      </label>
+                                    </div>
+                                </div> <!-- form-group// -->
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block"> Sign In </button>
+                                </div> <!-- form-group// -->
+                                <p class="text-center">Have an account? <a href="{% url 'profiles:auth_registration' %}">Sign Up</a> </p>
+                            </form>
+                        </article>
+                    </div>
+                </div> <!-- card.// -->
+
             </div>
-            <div class="col-md-3"></div>
-        </div>
+            <!--container end.//-->
+        <br><br><br><br>
     {% endblock %}
