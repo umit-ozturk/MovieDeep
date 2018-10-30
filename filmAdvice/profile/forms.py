@@ -6,10 +6,34 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class RegisterForm(UserCreationForm):
-    username = forms.CharField(
-        label="Username",
+    full_name = forms.CharField(
+        label="full_name",
         max_length=30,
-        help_text='Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.',
+        help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
+        error_messages={
+            'invalid': "Invalid characters"
+        }
+    )
+    email = forms.CharField(
+        label="email",
+        max_length=30,
+        help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
+        error_messages={
+            'invalid': "Invalid characters"
+        }
+    )
+    password = forms.CharField(
+        label="password",
+        max_length=30,
+        help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
+        error_messages={
+            'invalid': "Invalid characters"
+        }
+    )
+    password2 = forms.CharField(
+        label="password2",
+        max_length=30,
+        help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
         error_messages={
             'invalid': "Invalid characters"
         }
@@ -24,8 +48,9 @@ class RegisterForm(UserCreationForm):
         super(RegisterForm, self).__init__(*args, **kwargs)
 
     def clean_username(self):
-        username = self.cleaned_data["username"]
+        username = self.cleaned_data["email"]
         try:
+            print(username)
             UserProfile._default_manager.get(username__iexact=username)
         except UserProfile.DoesNotExist:
             return username

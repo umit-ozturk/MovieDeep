@@ -1,10 +1,10 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from filmAdvice.profile.managers import FilmUserManager
 from django.db import models
 from filmAdvice.profile.constant import *
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField('Kullanıcı Adı', unique=True, null=False, blank=False, max_length=100)
     email = models.EmailField('E-posta', unique=True, null=False, blank=False)
     full_name = models.CharField('İsim', null=True, blank=True, max_length=200)
     phone = models.CharField('Telefon Numarası', null=True, blank=True, max_length=15)
@@ -21,7 +21,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField('Oluşturulma Tarihi', auto_now_add=True, editable=False)
     updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False)
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
+    objects = FilmUserManager()
 
     class Meta:
         verbose_name = 'Kullanıcı'
@@ -29,10 +30,10 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return '{}'.format(self.username)
+        return '{}'.format(self.email)
 
     def get_full_name(self):
-        return self.name
+        return self.full_name
 
     def get_short_name(self):
-        return self.name
+        return self.full_name
