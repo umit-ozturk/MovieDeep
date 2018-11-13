@@ -7,32 +7,36 @@ from django.contrib.auth.forms import UserCreationForm
 
 class RegisterForm(UserCreationForm):
     full_name = forms.CharField(
-        label="full_name",
+        label="Full name",
         max_length=30,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
         help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
         error_messages={
             'invalid': "Invalid characters"
         }
     )
     email = forms.CharField(
-        label="email",
+        label="Email address",
         max_length=30,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
         help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
         error_messages={
             'invalid': "Invalid characters"
         }
     )
-    password = forms.CharField(
-        label="password",
+    password1 = forms.CharField(
+        label="Create password",
         max_length=30,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
         error_messages={
             'invalid': "Invalid characters"
         }
     )
     password2 = forms.CharField(
-        label="password2",
+        label="Repeat password",
         max_length=30,
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         help_text='Required. 250 characters or fewer. Letters, digits and @/./+/-/_ only.',
         error_messages={
             'invalid': "Invalid characters"
@@ -40,21 +44,21 @@ class RegisterForm(UserCreationForm):
     )
 
     class Meta(UserCreationForm.Meta):
-        fields = ("full_name", "email", "password", "password2")
+        fields = ("email", "password1", "password2")
+        exclude = ['username', ]
         model = UserProfile
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')
         super(RegisterForm, self).__init__(*args, **kwargs)
 
-    def clean_username(self):
-        username = self.cleaned_data["email"]
+    def clean_email(self):
+        email = self.cleaned_data["email"]
         try:
-            print(username)
-            UserProfile._default_manager.get(username__iexact=username)
+            UserProfile._default_manager.get(email__iexact=email)
         except UserProfile.DoesNotExist:
-            return username
+            return email
         raise forms.ValidationError(
-            self.error_messages['duplicate_username'],
+            self.error_messages['duplicate_email'],
             code='duplicate_username',
 )

@@ -6,6 +6,50 @@ html {
   height: 200vh;
 }
 
+/* Register Page Start */
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+
+/* Register Page Finish */
+
+/* Section Bar Start */
+
+.background-image-slide{
+    background-image: url('/media/site/background.jpg');
+    background-size:cover;
+}
+
+/* Footer Start */
+
 .fh5co-bg {
   background-size: cover;
   background-position: center center;
@@ -85,7 +129,7 @@ html {
   text-decoration: underline;
 }
 #fh5co-footer .fh5co-widget {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 @media screen and (max-width: 768px) {
   #fh5co-footer .fh5co-widget {
@@ -110,8 +154,8 @@ html {
   border: 2px solid #6A1B9A;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background: #f96c2f !important;
-  border-color: #f96c2f !important;
+  background: #4A148C !important;
+  border-color: #4A148C !important;
 }
 .btn-primary.btn-outline {
   background: transparent;
@@ -122,3 +166,5 @@ html {
   background: #6A1B9A;
   color: #fff;
 }
+
+/* Footer Finish */

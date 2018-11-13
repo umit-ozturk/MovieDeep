@@ -129,7 +129,7 @@ html {
   text-decoration: underline;
 }
 #fh5co-footer .fh5co-widget {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 @media screen and (max-width: 768px) {
   #fh5co-footer .fh5co-widget {

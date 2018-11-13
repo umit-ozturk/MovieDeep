@@ -21,25 +21,25 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                                      </div>
-                                    <input name="full_name" for="full_name" class="form-control" placeholder="Full name" type="text">
+                                    {{ form.full_name }}
                                 </div> <!-- form-group// -->
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                                      </div>
-                                    <input name="email" for="email" class="form-control" placeholder="Email address" type="email">
+                                    {{ form.email }}
                                 </div> <!-- form-group// -->
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
-                                    <input class="form-control" for="password" placeholder="Create password" type="password">
+                                    {{ form.password1 }}
                                 </div> <!-- form-group// -->
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
-                                    <input class="form-control" for="password2" placeholder="Repeat password" type="password">
+                                    {{ form.password2 }}
                                 </div> <!-- form-group// -->
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>

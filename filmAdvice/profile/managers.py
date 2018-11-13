@@ -8,9 +8,7 @@ class FilmUserManager(BaseUserManager):
         if not email:
             raise ValueError('The given username must be set')
 
-        user = self.model(email=email,
-                          is_staff=is_staff, is_active=True,
-                          is_superuser=is_superuser, **extra_fields)
+        user = self.model(email=email, is_staff=is_staff, is_active=True, is_superuser=is_superuser, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
