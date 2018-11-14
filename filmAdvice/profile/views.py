@@ -4,6 +4,7 @@ from django.views.generic import FormView, CreateView, RedirectView, DetailView
 
 from filmAdvice.profile.mixins import LoginRequiredMixin
 from filmAdvice.profile.forms import RegisterForm, AuthenticationLoginForm
+from filmAdvice.profile.models import UserProfile
 
 
 class RegisterView(CreateView):
@@ -27,7 +28,6 @@ class LoginView(FormView):
 
     def form_valid(self, form):
         login(self.request, form.get_user())
-        print(login(self.request, form.get_user()))
         return super(LoginView, self).form_valid(form)
 
     def get_success_url(self):
@@ -48,6 +48,9 @@ class LogoutView(LoginRequiredMixin, RedirectView):
 
 
 class ProfileDetailView(DetailView):
+    template_name = "auth/profile.html"
+    queryset = UserProfile.objects.all()
+
     def get_context_data(self, **kwargs):
         user = self.get_object()
         return super(ProfileDetailView, self).get_context_data(user=user, **kwargs)

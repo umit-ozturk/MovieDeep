@@ -3,7 +3,7 @@ from filmAdvice.profile.models import UserProfile
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('email', 'full_name', 'status', 'is_email_send',)
+    list_display = ('email', 'full_name', 'status', 'is_email_send', 'slug',)
     search_fields = ('email',)
 
     readonly_fields = ('is_email_send', 'password_confirmation_token', 'password_confirmation_expire_date', 'last_login',)
