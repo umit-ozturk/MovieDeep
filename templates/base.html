@@ -34,12 +34,21 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'home' %}">Home </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'profiles:auth_login' %}">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'profiles:auth_registration' %}">Register</a>
-              </li>
+                {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profiles:auth_profile' request.user.id %}">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profiles:auth_logout' %}">Logout</a>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profiles:auth_login' %}">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profiles:auth_registration' %}">Register</a>
+                  </li>
+                {% endif %}
             </ul>
         </div>
 

@@ -1,10 +1,9 @@
 from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
 from django.views.generic import FormView, CreateView, RedirectView, DetailView
 
 from filmAdvice.profile.mixins import LoginRequiredMixin
-from filmAdvice.profile.forms import RegisterForm
+from filmAdvice.profile.forms import RegisterForm, AuthenticationLoginForm
 
 
 class RegisterView(CreateView):
@@ -12,9 +11,7 @@ class RegisterView(CreateView):
     template_name = "auth/register.html"
 
     def form_valid(self, form):
-        print(form)
         response = super(RegisterView, self).form_valid(form)
-        print(response)
         user = authenticate(username=form.cleaned_data["email"],
                             password=form.cleaned_data["password1"])
         login(self.request, user)
@@ -25,19 +22,19 @@ class RegisterView(CreateView):
 
 
 class LoginView(FormView):
-    form_class = AuthenticationForm
+    form_class = AuthenticationLoginForm
     template_name = "auth/login.html"
 
     def form_valid(self, form):
         login(self.request, form.get_user())
+        print(login(self.request, form.get_user()))
         return super(LoginView, self).form_valid(form)
 
     def get_success_url(self):
-        return self.request.GET.get("next") or reverse("home")
+        return reverse("home")
 
     def get_context_data(self, **kwargs):
         context = super(LoginView, self).get_context_data(**kwargs)
-        context["next"] = self.request.GET.get("next", "")
         return context
 
 

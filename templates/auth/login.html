@@ -15,19 +15,22 @@
                             <p class="divider-text">
                                 <span class="bg-light">OR</span>
                             </p>
-                            <form>
+                            <form method="post">
+                                {% csrf_token %}
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                                      </div>
-                                    <input name="" class="form-control" placeholder="Email address" type="email">
+                                    {{ form.username }}
+                                   <!-- <input name="" class="form-control" placeholder="Email address" type="email"> -->
                                 </div> <!-- form-group// -->
 
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                                     </div>
-                                    <input class="form-control" placeholder="Create password" type="password">
+                                    {{ form.password }}
+                                    <!-- <input class="form-control" placeholder="Create password" type="password"> -->
                                 </div> <!-- form-group// -->
                                 <div class="form-group input-group">
                                     <div class="checkbox mb-3">
