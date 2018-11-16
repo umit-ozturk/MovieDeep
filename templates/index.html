@@ -3,16 +3,29 @@
     {% include "home.html" %}
     <main role="main">
 
-      <section class="jumbotron text-center background-image-slide">
-        <div class="container ">
-          <h1 class="jumbotron-heading text-light">Your Favorite Movie</h1>
-          <p class="lead text-muted">Find your favorite movie with MovieDeep right now.</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Find Your Movie</a>
-            <a href="#" class="btn btn-secondary my-2">Register Right Now</a>
-          </p>
-        </div>
-      </section>
+      {% if request.user.is_authenticated %}
+        <section class="jumbotron text-center background-image-slide">
+          <div class="container ">
+            <h1 class="jumbotron-heading text-light">Your Favorite Movie</h1>
+            <p class="lead text-muted">Find your favorite movie with MovieDeep right now.</p>
+            <p>
+              <a href="#" class="btn btn-primary my-2">Find Your Movie</a>
+              <a href="#" class="btn btn-secondary my-2">Quick Rate Now</a>
+            </p>
+          </div>
+        </section>
+      {% else %}
+        <section class="jumbotron text-center background-image-slide">
+          <div class="container ">
+            <h1 class="jumbotron-heading text-light">Your Favorite Movie</h1>
+            <p class="lead text-muted">Find your favorite movie with MovieDeep right now.</p>
+            <p>
+              <a href="#" class="btn btn-primary my-2">Find Your Movie</a>
+              <a href="#" class="btn btn-secondary my-2">Register Right Now</a>
+            </p>
+          </div>
+        </section>
+      {% endif %}
 
       <div class="album py-5 bg-light">
         <div class="container">
