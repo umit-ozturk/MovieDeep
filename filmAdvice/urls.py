@@ -28,6 +28,7 @@ urlpatterns = [
     path('docs/', include_docs_urls(title='Documentation')),
     path('', include('filmAdvice.profile.urls', namespace='profiles')),
     path('', HomeView.as_view(), name='home'),
+    path('movie/', include('filmAdvice.movie.urls', namespace='movies')),
 
 ]
 

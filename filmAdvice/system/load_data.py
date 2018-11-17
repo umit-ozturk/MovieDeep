@@ -7,6 +7,7 @@ from filmAdvice.movie.models import Movie
 class LoadDataSets:
     def __init__(self):
         self.load_movie_data()
+        self.load_link_data()
         self.load_rating_data()
         self.load_tag_data()
 
@@ -16,9 +17,19 @@ class LoadDataSets:
                                     fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
 
         for row in reader:
-            print(row)
+
             # movie = Movie(title=row['Title'], genre=row['Genres'])
+            print(row)
             # movie.save()
+        return reader
+
+    def load_link_data(self):
+        with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_LINKS_FILE, encoding='utf-8') as f:
+            reader = csv.DictReader([line.replace('::', '\t') for line in f],
+                                    fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
+
+        for row in reader:
+            pass
         return reader
 
     def load_rating_data(self):

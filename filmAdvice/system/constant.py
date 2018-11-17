@@ -1,4 +1,5 @@
 SYSTEM_APP_PATH = '/filmAdvice/system/'
-DATASET_MOVIES_FILE = 'ratings.dat'
-DATASET_RATINGS_FILE = 'ratings.dat'
-DATASET_TAGS_FILE = 'ratings.dat'
+DATASET_LINKS_FILE = 'links.csv'
+DATASET_MOVIES_FILE = 'movies.csv'
+DATASET_RATINGS_FILE = 'ratings.csv'
+DATASET_TAGS_FILE = 'tags.csv'
