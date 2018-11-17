@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-    {% for i in movie %}
-        {i}
-    {% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <div class="card hovercard">
+                <div class="card-background card-background-movie">
+                    <div class="embed-responsive embed-responsive-21by9">
+                      <iframe class="embed-responsive-item" src="{{ movie_video.play }}" autoplay="False"></iframe>
+                    </div>
+                    <img class="card-bkimg" alt="" src="{{ movie_details.base.image.url }}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {{ movie_video.play }}
 {% endblock %}

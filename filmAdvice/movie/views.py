@@ -1,7 +1,7 @@
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView
 from filmAdvice.movie.models import Movie
-from filmAdvice.system.load_data import LoadDataSets
-from filmAdvice.system.tools import find_imdb_ib_for_movie_id
+from filmAdvice.system.tools import *
+from filmAdvice.movie.tools import *
 
 
 class HomeView(TemplateView):
@@ -17,14 +17,27 @@ class HomeView(TemplateView):
         return Movie.objects.all()
 
 
-class MovieListView(ListView):
+class MovieView(TemplateView):
     template_name = "movies/movie.html"
-    queryset = Movie.objects.all()
+    tab_class = "movie_details"
 
     def get_context_data(self, **kwargs):
-        a = find_imdb_ib_for_movie_id("1")
-        print(a)
-        return super(MovieListView, self).get_context_data(id=None, **kwargs)
+        return super(MovieView, self).get_context_data(movie_details=self.get_movie_title,
+                                                       movie_ratings=self.get_movie_ratings,
+                                                       movie_video=self.get_movie_video, **kwargs)
 
-    def get_movie_id(self, **kwargs):
-        return LoadDataSets.load_movie_data()
+    def get_movie_title(self, **kwargs):
+        imdb_id = find_imdb_link_for_movie_id("2")
+        return get_title(imdb_id)
+
+    def get_movie_ratings(self, **kwargs):
+        imdb_id = find_imdb_link_for_movie_id("2")
+        return get_ratings(imdb_id)
+
+    def get_movie_video(self, **kwargs):
+        imdb_id = find_imdb_link_for_movie_id("2")
+
+        youtube = YoutubeAPI()
+        print(youtube)
+        print(youtube.search(q="Toy Story"))
+        return get_video(imdb_id)['videos'][0]['encodings'][0]
