@@ -95,18 +95,6 @@ html {
     filter: blur(0px);
 }
 
-.card-background-movie::after {
-    content: "";
-    background: #424242;
-    opacity: 0.4;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-}
-
 .card.hovercard .useravatar {
     position: absolute;
     top: 75px;

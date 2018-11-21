@@ -27,17 +27,18 @@ class MovieView(TemplateView):
                                                        movie_video=self.get_movie_video, **kwargs)
 
     def get_movie_title(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("2")
+        imdb_id = find_imdb_link_for_movie_id("1")
         return get_title(imdb_id)
 
+    def get_movie_year(self, **kwargs):
+        imdb_id = find_imdb_link_for_movie_id("1")
+        return get_year(imdb_id)
+
     def get_movie_ratings(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("2")
+        imdb_id = find_imdb_link_for_movie_id("1")
         return get_ratings(imdb_id)
 
     def get_movie_video(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("2")
-
-        youtube = YoutubeAPI()
-        print(youtube)
-        print(youtube.search(q="Toy Story"))
-        return get_video(imdb_id)['videos'][0]['encodings'][0]
+        imdb_id = find_imdb_link_for_movie_id("1")
+        print(self.get_movie_year())
+        return youtube_search(q=str(self.get_movie_title()), year=str(self.get_movie_year()))['videoId'][0]
