@@ -22,23 +22,28 @@ class MovieView(TemplateView):
     tab_class = "movie_details"
 
     def get_context_data(self, **kwargs):
-        return super(MovieView, self).get_context_data(movie_details=self.get_movie_title,
-                                                       movie_ratings=self.get_movie_ratings,
-                                                       movie_video=self.get_movie_video, **kwargs)
+        imdb_id = "tt0114709"  # imdb_id = find_imdb_link_for_movie_id("1") --> Temporary static variable
+        movie_base_data = self.get_movie_info(imdb_id)
+        return super(MovieView, self).get_context_data(movie_data=movie_base_data,
+                                                       movie_ratings=self.get_movie_ratings(imdb_id),
+                                                       movie_crew=self.get_title_crew(imdb_id),
+                                                       movie_video=self.get_movie_video(movie_base_data['title'],
+                                                                                        movie_base_data['year']),
+                                                       movie_genres=self.get_movie_genres(imdb_id), **kwargs)
 
-    def get_movie_title(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("1")
-        return get_title(imdb_id)
+    def get_movie_info(self, imdb_id):
+        print(movie_info(imdb_id))
+        movie_data = movie_info(imdb_id)
+        return movie_data
 
-    def get_movie_year(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("1")
-        return get_year(imdb_id)
+    def get_title_crew(self, imdb_id):
+        return crew_info(imdb_id)
 
-    def get_movie_ratings(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("1")
-        return get_ratings(imdb_id)
+    def get_movie_ratings(self, imdb_id):
+        return movie_ratings(imdb_id)
 
-    def get_movie_video(self, **kwargs):
-        imdb_id = find_imdb_link_for_movie_id("1")
-        print(self.get_movie_year())
-        return youtube_search(q=str(self.get_movie_title()), year=str(self.get_movie_year()))['videoId'][0]
+    def get_movie_video(self, movie_title, movie_year):
+        return youtube_search(q=str(movie_title), year=str(movie_year))['videoId'][0]
+
+    def get_movie_genres(self, imdb_id):
+        return movie_genres(imdb_id)['genres']

@@ -3,8 +3,98 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <iframe class="embed-responsive-item" width="1080" height="315" src="https://www.youtube.com/embed/{{ movie_video }}?rel=0?version=3&autoplay=0&wmode=transparent&fs=0&disablekb=1&controls=0&&showinfo=0&loop=0" frameborder="0" allow=" autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="embed-responsive-item" width="1111" height="315" src="https://www.youtube.com/embed/{{ movie_video }}?rel=0?version=3&autoplay=0&wmode=transparent&fs=0&disablekb=1&controls=0&&showinfo=0&loop=0" frameborder="0" allow=" autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
         </div>
+    </div>
+    <div class="list-group" id="list-tab" role="tablist">
+        <div class="row">
+            <div class="col-9 list-col-3 header-movie">
+                <br>
+                <p id="movie-title-list">{{ movie_data.title }}</p>
+            </div>
+
+            <div class="col-3 list-col-3 float-right">
+                <br>
+                <div class="action-buttons">
+                    <a class="active">
+                        <i class="far fa-check-square" aria-hidden="true"></i>
+                        <span>Rate</span>
+                    </a>
+                    <a class="">
+                        <i class="far fa-star" aria-hidden="true"></i>
+                        <span>Save</span>
+                    </a>
+                    <a class="">
+                        <i class="fas fa-share-alt-square" aria-hidden="true"></i>
+                        <span>Share</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="img-responsive">
+                <img src="{{ movie_data.image.url }}" class="img-thumbnail">
+            </div>
+        </div>
+        <div class="col-md-9 title-movie">
+            <p>{{ movie_data.year }} | {{ movie_data.title }} |
+                    {% for genre in movie_genres %}
+                        {% if genre == movie_genres|last %}
+                            <a href="#" >{{ genre }}</a>&nbsp;
+                        {% else %}
+                            <a href="#" >{{ genre }}</a>,&nbsp;
+                        {% endif %}
+                    {% endfor %}
+            </p>
+            <br>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ movie_details.plot.summaries.0.text }}</span>
+            <div class="more-info">
+                <div class="row">
+                    <b>Director:&nbsp;</b>
+                    {% for director in movie_crew.directors %}
+                        <p>
+                        {% if director == movie_crew.directors|last %}
+                            <a href="#" >{{ director.name }}&nbsp;</a>
+                        {% else %}
+                            <a href="#" >{{ director.name }}</a>,&nbsp;
+                        {% endif %}
+                        </p>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <b>Writer:&nbsp;</b>
+                    {% for writer in movie_crew.writers %}
+                        <p>
+                        {% if writer == movie_crew.writers|last %}
+                            <a href="#" >{{ writer.name }}&nbsp;</a>
+                        {% else %}
+                            <a href="#" >{{ writer.name }}</a>,&nbsp;
+                        {% endif %}
+                        </p>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <b>Runtime:&nbsp;</b>
+                    <p> {{ movie_data.runningTimeInMinutes }} Minutes</p>
+                </div>
+                <div class="row">
+                    <b>Release Date:&nbsp;</b>
+                    {% for director in movie_crew %}
+                        {{ director }}&nbsp;
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <b>Main Cast:&nbsp;</b>
+                    {% for director in movie_crew %}
+                        {{ director }}&nbsp;
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

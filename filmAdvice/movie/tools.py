@@ -36,17 +36,21 @@ def get_client():
     return client
 
 
-def get_year(imdb_id):
-    return get_client().get_title(imdb_id)['base']['year']
+def crew_info(imdb_id):
+    return get_client().get_title_top_crew(imdb_id)
 
 
-def get_title(imdb_id):
-    return get_client().get_title(imdb_id)['base']['title']
+def movie_info(imdb_id):
+    return get_client().get_title_credits(imdb_id)['base']
 
 
-def get_ratings(imdb_id):
+def movie_ratings(imdb_id):
     return get_client().get_title_ratings(imdb_id)
 
 
-def get_video(imdb_id):
+def movie_video(imdb_id):
     return get_client().get_title_videos(imdb_id)
+
+
+def movie_genres(imdb_id):
+    return get_client().get_title_genres(imdb_id)

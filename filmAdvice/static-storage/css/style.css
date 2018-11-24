@@ -264,3 +264,52 @@ html {
 }
 
 /* Footer Finish */
+
+.title-movie > p{
+    font-size: 20px;
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+.header-movie > p{
+    font-size: 25px;
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+
+.action-buttons{
+    width: 300px;
+    display: table-cell;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+.action-buttons a.active {
+    color: #4A148C !important;
+}
+
+.action-buttons > a{
+    position: relative;
+    width: 25%;
+    padding-bottom: 10px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    color: #999;
+    transition: all .1s linear;
+}
+
+.action-buttons > a > i{
+    display: block;
+    font-size: 27px;
+}
+
+
+.more-info {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 4px;
+    background: #FAFAFA;
+    border-bottom: 1px solid #efefef;
+}
