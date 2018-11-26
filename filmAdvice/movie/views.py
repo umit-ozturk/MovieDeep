@@ -11,10 +11,15 @@ class HomeView(TemplateView):
     paginate_by = 20
 
     def get_context_data(self, **kwargs):
-        return super(HomeView, self).get_context_data(movies=self.get_movies(), **kwargs)
+        imdb_id = "tt0114709"
+        return super(HomeView, self).get_context_data(movies=self.get_movies(),
+                                                      movie_data=self.get_movie_info(imdb_id), **kwargs)
 
     def get_movies(self):
         return Movie.objects.all()
+
+    def get_movie_info(self, imdb_id):
+        return movie_info(imdb_id)
 
 
 class MovieView(TemplateView):

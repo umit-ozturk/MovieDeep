@@ -2,7 +2,6 @@
 {% block content %}
     {% include "home.html" %}
     <main role="main">
-
       {% if request.user.is_authenticated %}
         <section class="jumbotron text-center background-image-slide">
           <div class="container ">
@@ -29,12 +28,93 @@
 
       <div class="album py-5 bg-light">
         <div class="container">
-
           <div class="row">
-
+            <div class="col-md-3">
+              <div class="thumbnail">
+                  <div class="img-responsive">
+                      <a href="">
+                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
+                      </a>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <a href="" class="text-left movie-title">
+                          <span>{{ movie_data.title }}</span>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <span class="recommended-point text-right">90</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                  <div class="img-responsive">
+                      <a href="">
+                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
+                      </a>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <a href="" class="text-left movie-title">
+                          <span>{{ movie_data.title }}</span>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <span class="recommended-point text-right">90</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                  <div class="img-responsive">
+                      <a href="">
+                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
+                      </a>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <a href="" class="text-left movie-title">
+                          <span>{{ movie_data.title }}</span>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <span class="recommended-point text-right">90</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="thumbnail">
+                  <div class="img-responsive">
+                      <a href="">
+                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
+                      </a>
+                  </div>
+                  <div class="caption">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <a href="" class="text-left movie-title">
+                          <span>{{ movie_data.title }}</span>
+                        </a>
+                      </div>
+                      <div class="col-md-3">
+                        <span class="recommended-point text-right">90</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
     </main>
 {% endblock %}
