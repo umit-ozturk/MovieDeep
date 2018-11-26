@@ -12,6 +12,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         imdb_id = "tt0114709"
+        print(self.get_movie_info(imdb_id))
         return super(HomeView, self).get_context_data(movies=self.get_movies(),
                                                       movie_data=self.get_movie_info(imdb_id), **kwargs)
 
