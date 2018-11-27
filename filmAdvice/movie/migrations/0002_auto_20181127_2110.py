@@ -9,18 +9,21 @@ import csv
 
 class Migration(migrations.Migration):
 
-    def inital_movie_data(apps, schema_editor):
-        with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_MOVIES_FILE, 'rU', encoding='utf-8') as f:
-            reader = csv.DictReader([line.replace('::', '\t') for line in f],
-                                    fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
+    initial = True
 
-        Movie = apps.get_model('filmAdvice.movie', 'Movie')
-        print(Movie)
+    def inital_movie_data(apps, schema_editor):
+        with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_MOVIES_FILE, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader([line.replace(',', '\t') for line in f],
+                                    fieldnames='movieId,title,genres'.split(','), delimiter='\t')
+
+        Movie = apps.get_model('movie', 'Movie')
         for row in reader:
-            # print(row['MovieID'])
             try:
-                movie = Movie.objects.create(movie_id=int(row['MovieID']), movie_name=row['Title'])
-                movie.save(commit=True)
+                for movie in Movie.objects.all():
+                    movie.movie_id = int(row['movieId'])
+                    movie.movie_name = row['title']
+                    print(movie)
+                    movie.save()
             except:
                 pass
         return reader
@@ -32,7 +35,7 @@ class Migration(migrations.Migration):
             movie.save()
 
     dependencies = [
-        ('movie', '0004_auto_20181127_0038'),
+        ('movie', '0001_initial'),
     ]
 
     operations = [
