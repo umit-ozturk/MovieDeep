@@ -14,11 +14,13 @@ class Migration(migrations.Migration):
             reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                     fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
 
-        Movie = apps.get_model('movie', 'Movie')
+        Movie = apps.get_model('filmAdvice.movie', 'Movie')
+        print(Movie)
         for row in reader:
-            print(row['MovieID'])
+            # print(row['MovieID'])
             try:
-                Movie.objects.create(movie_id=int(row['MovieID']), movie_name=row['Title'])
+                movie = Movie.objects.create(movie_id=int(row['MovieID']), movie_name=row['Title'])
+                movie.save(commit=True)
             except:
                 pass
         return reader
