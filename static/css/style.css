@@ -314,7 +314,17 @@ html {
     border-bottom: 1px solid #efefef;
 }
 
+.movie-title{
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 15px;
+    text-decoration: none;
+}
 
+.movie-title:hover{
+    color: #000;
+}
 
 /* Rating Cart Started */
 .glyphicon { margin-right:5px;}

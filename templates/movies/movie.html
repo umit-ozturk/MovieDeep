@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+
 {% block content %}
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -102,14 +104,15 @@
                 <div class="row more-info">
                     <div class="col-xs-12 col-md-6 text-center">
                         <h1 class="rating-num">
-                            4.0</h1>
+                            {{ movie_ratings.rating }}</h1>
+
                         <div class="rating">
                             <span class="fas fa-star"></span><span class="fas fa-star">
                             </span><span class="fas fa-star"></span><span class="fas fa-star">
                             </span><span class="far fa-star"></span>
                         </div>
                         <div>
-                            <span class="glyphicon glyphicon-user"></span>1,050,008 total
+                            <span class="glyphicon glyphicon-user"></span>{{ movie_ratings.ratingCount }} total
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6">
@@ -182,6 +185,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
