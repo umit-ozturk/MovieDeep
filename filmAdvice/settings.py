@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'import_export',
     'rest_framework',
     'rest_framework.authtoken',
     'filmAdvice.movie',
@@ -155,6 +156,8 @@ SUIT_CONFIG = {
 }
 
 APP_MAIN_CURRENT_PATH = os.getcwd()
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 try:
     from filmAdvice.local_settings import *

@@ -30,7 +30,6 @@ class MovieView(TemplateView):
     def get_context_data(self, **kwargs):
         imdb_id = "tt0114709"  # imdb_id = find_imdb_link_for_movie_id("1") --> Temporary static variable
         movie_base_data = self.get_movie_info(imdb_id)
-        print(self.get_movie_ratings(imdb_id)['ratingsHistograms']['IMDb Users'])
         return super(MovieView, self).get_context_data(movie_data=movie_base_data,
                                                        movie_ratings=self.get_movie_ratings(imdb_id),
                                                        movie_crew=self.get_title_crew(imdb_id),
@@ -40,7 +39,8 @@ class MovieView(TemplateView):
 
     def get_movie_info(self, imdb_id):
         print(movie_info(imdb_id))
-        movie_data = movie_info(imdb_id)
+        movie_data = \
+            (imdb_id)
         return movie_data
 
     def get_title_crew(self, imdb_id):
