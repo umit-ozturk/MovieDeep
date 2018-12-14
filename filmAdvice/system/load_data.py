@@ -6,12 +6,10 @@ from filmAdvice.movie.models import Movie
 
 class LoadDataSets:
     def __init__(self):
-        self.load_movie_data()
-        self.load_link_data()
-        self.load_rating_data()
-        self.load_tag_data()
+        pass
 
-    def load_movie_data(self):
+    @staticmethod
+    def load_movie_data():
         with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_MOVIES_FILE, encoding='utf-8') as f:
             reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                     fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
@@ -23,7 +21,8 @@ class LoadDataSets:
             # movie.save()
         return reader
 
-    def load_link_data(self):
+    @staticmethod
+    def load_link_data():
         with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_LINKS_FILE, encoding='utf-8') as f:
             reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                     fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
@@ -32,7 +31,8 @@ class LoadDataSets:
             pass
         return reader
 
-    def load_rating_data(self):
+    @staticmethod
+    def load_rating_data():
         with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_RATINGS_FILE, encoding='utf-8') as f:
             reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                     fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
@@ -43,7 +43,8 @@ class LoadDataSets:
             # rating.save()
         return reader
 
-    def load_tag_data(self):
+    @staticmethod
+    def load_tag_data():
         with open(APP_MAIN_CURRENT_PATH + SYSTEM_APP_PATH + DATASET_TAGS_FILE, encoding='utf-8') as f:
             reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                     fieldnames='MovieID::Title::Genres'.split('::'), delimiter='\t')
