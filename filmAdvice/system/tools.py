@@ -36,19 +36,16 @@ def get_user_rating():
     # user_rating_df_2 = user_rating_df.stack()
     n_users = user_rating_df.user_id.unique().shape[0]
     n_items = user_rating_df.item_id.unique().shape[0]
+#    ratings = np.zeros((n_users, n_items))
+#    for row in user_rating_df.itertuples():
+#        ratings[row[1] - 1, row[2] - 1] = row[3]
     # user_rating_df_2.columns = user_rating_df_2.columns.droplevel(0)
     # user_rating_df_2.reset_index()
     #user_rating_df_2 = pd.pivot(user_rating_df, values='rating', columns=['userId'])
-    print("Debug3")
     return n_users, n_items  # head is just now
 
 
 def concat_frames(frames=[]):  # Frames Must be List
-    print("Debug4")
     result = pd.concat(frames)
-    print("Debug5")
     return result
-
-print(get_user_rating())
-#print(concat_frames([get_movie_table(), get_user_rating()]))
 
