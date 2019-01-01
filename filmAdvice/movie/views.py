@@ -12,9 +12,11 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         imdb_id = "tt0114709"
-        print(self.get_movie_info(imdb_id))
-        return super(HomeView, self).get_context_data(movies=self.get_movies(),
+        return super(HomeView, self).get_context_data(movies=self.get_popular_movies(),
                                                       movie_data=self.get_movie_info(imdb_id), **kwargs)
+
+    def get_popular_movies(self):
+        return popular_movies()
 
     def get_movies(self):
         return Movie.objects.all()
@@ -25,7 +27,6 @@ class HomeView(TemplateView):
 
 class MovieView(TemplateView):
     template_name = "movies/movie.html"
-    tab_class = "movie_details"
 
     def get_context_data(self, **kwargs):
         imdb_id = "tt0114709"  # imdb_id = find_imdb_link_for_movie_id("1") --> Temporary static variable
@@ -38,9 +39,7 @@ class MovieView(TemplateView):
                                                        movie_genres=self.get_movie_genres(imdb_id), **kwargs)
 
     def get_movie_info(self, imdb_id):
-        print(movie_info(imdb_id))
-        movie_data = \
-            (imdb_id)
+        movie_data = (imdb_id)
         return movie_data
 
     def get_title_crew(self, imdb_id):

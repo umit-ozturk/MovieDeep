@@ -36,6 +36,11 @@ def get_client():
     return client
 
 
+def popular_movies():
+    print(get_client().get_popular_movies())
+    return get_client().get_popular_movies()
+
+
 def crew_info(imdb_id):
     return get_client().get_title_top_crew(imdb_id)
 

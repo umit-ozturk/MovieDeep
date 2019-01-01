@@ -25,94 +25,29 @@
           </div>
         </section>
       {% endif %}
-
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
-            <div class="col-md-3">
-              <div class="thumbnail">
-                  <div class="img-responsive">
-                      <a href="">
-                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
-                      </a>
-                  </div>
-                  <div class="caption">
-                    <div class="row">
-                      <div class="col-md-9">
-                        <a href="" class="text-left movie-title">
-                          <span>{{ movie_data.title }}</span>
-                        </a>
+            {% for movie in movies.ranks %}
+                <div class="col-md-3">
+                  <div class="thumbnail">
+                      <div class="img-responsive">
+                          <a href="">
+                            <img src="{{ movie.image.url }}" class="img-thumbnail">
+                          </a>
                       </div>
-                      <div class="col-md-3">
-                        <span class="recommended-point text-right">90</span>
+                      <div class="caption">
+                        <div class="row">
+                          <div class="col-md-9">
+                            <a href="" class="text-left movie-title">
+                              <span>{{ movie.title }}</span>
+                            </a>
+                          </div>
+                        </div>
                       </div>
-                    </div>
                   </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="thumbnail">
-                  <div class="img-responsive">
-                      <a href="">
-                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
-                      </a>
-                  </div>
-                  <div class="caption">
-                    <div class="row">
-                      <div class="col-md-9">
-                        <a href="" class="text-left movie-title">
-                          <span>{{ movie_data.title }}</span>
-                        </a>
-                      </div>
-                      <div class="col-md-3">
-                        <span class="recommended-point text-right">90</span>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="thumbnail">
-                  <div class="img-responsive">
-                      <a href="">
-                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
-                      </a>
-                  </div>
-                  <div class="caption">
-                    <div class="row">
-                      <div class="col-md-9">
-                        <a href="" class="text-left movie-title">
-                          <span>{{ movie_data.title }}</span>
-                        </a>
-                      </div>
-                      <div class="col-md-3">
-                        <span class="recommended-point text-right">90</span>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="thumbnail">
-                  <div class="img-responsive">
-                      <a href="">
-                        <img src="{{ movie_data.image.url }}" class="img-thumbnail">
-                      </a>
-                  </div>
-                  <div class="caption">
-                    <div class="row">
-                      <div class="col-md-9">
-                        <a href="" class="text-left movie-title">
-                          <span>{{ movie_data.title }}</span>
-                        </a>
-                      </div>
-                      <div class="col-md-3">
-                        <span class="recommended-point text-right">90</span>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
+                </div>
+            {% endfor %}
           </div>
         </div>
       </div>

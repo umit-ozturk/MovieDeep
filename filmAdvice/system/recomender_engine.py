@@ -26,7 +26,6 @@ def recomender_engine():
     output_layer = tf.matmul(layer_concat, output_layer_vals['weights'])
     output_true = tf.placeholder('float', [None, 1260])
     meansq = tf.reduce_mean(tf.square(output_layer - output_true))
-    learn_rate = 0.1
     optimizer = tf.train.AdagradOptimizer(learn_rate).minimize(meansq)
     init, sess = init_tensor_sess()
     sess.run(init)
@@ -59,4 +58,4 @@ def take_predict(x_train):
     sample_user = x_test.iloc[11, :]
     print(sample_user)
     sample_user_pred = sess.run(output_layer, feed_dict={input_layer: [sample_user]})
-    print(sample_user_pred)
+    return sample_user_pred

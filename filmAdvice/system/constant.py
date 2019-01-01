@@ -16,9 +16,10 @@ NODES_CONST = (
 
 batch_size = 100
 hm_epochs = 50
+learn_rate = 0.1
 
 TENSOR_CONST = (
-    (n_nodes_inpl, 1260),
-    (n_nodes_hl1, 100),
-    (n_nodes_outl, 1260),
+    (batch_size, 1260),
+    (hm_epochs, 100),
+    (learn_rate, 1260),
 )
