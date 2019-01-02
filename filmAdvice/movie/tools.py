@@ -37,7 +37,6 @@ def get_client():
 
 
 def popular_movies():
-    print(get_client().get_popular_movies())
     return get_client().get_popular_movies()
 
 

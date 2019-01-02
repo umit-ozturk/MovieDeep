@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from filmAdvice.movie.models import Movie
 from filmAdvice.system.tools import *
 from filmAdvice.movie.tools import *
+from django.shortcuts import render, redirect
 
 
 class HomeView(TemplateView):
@@ -12,8 +13,9 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         imdb_id = "tt0114709"
-        return super(HomeView, self).get_context_data(movies=self.get_popular_movies(),
-                                                      movie_data=self.get_movie_info(imdb_id), **kwargs)
+        context = super(HomeView, self).get_context_data(movies=self.get_popular_movies(),
+                                                         movie_data=self.get_movie_info(imdb_id), **kwargs)
+        return context
 
     def get_popular_movies(self):
         return popular_movies()
