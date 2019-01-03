@@ -17,8 +17,15 @@ class HomeView(TemplateView):
                                                          movie_data=self.get_movie_info(imdb_id), **kwargs)
         return context
 
+    def post(self, request, *args, **kwargs):
+        if "rate_button" in self.request.POST:
+            print("kdflşdkflşdf")
+
+            return redirect(request.path)
+        return redirect(request.user)
+
     def get_popular_movies(self):
-        return popular_movies()
+        return popular_movies()['ranks'][:24]
 
     def get_movies(self):
         return Movie.objects.all()

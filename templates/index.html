@@ -31,11 +31,11 @@
         <div class="container">
           <div class="row">
 
-            {% for movie in movies.ranks %}
+            {% for movie in movies %}
                 <div class="col-md-3">
                   <div class="thumbnail">
                       <div class="img-responsive">
-                          <a href="">
+                          <a href="https://www.imdb.com{{ movie.id }}">
                             <img src="{{ movie.image.url }}" class="img-thumbnail">
                           </a>
                       </div>
