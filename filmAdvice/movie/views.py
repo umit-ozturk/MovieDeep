@@ -17,13 +17,6 @@ class HomeView(TemplateView):
                                                          movie_data=self.get_movie_info(imdb_id), **kwargs)
         return context
 
-    def post(self, request, *args, **kwargs):
-        if "rate_button" in self.request.POST:
-            print("kdflşdkflşdf")
-
-            return redirect(request.path)
-        return redirect(request.user)
-
     def get_popular_movies(self):
         return popular_movies()['ranks'][:24]
 
@@ -62,3 +55,10 @@ class MovieView(TemplateView):
 
     def get_movie_genres(self, imdb_id):
         return movie_genres(imdb_id)['genres']
+
+
+class RecommendView(TemplateView):
+    template_name = "movies/recommend.html"
+
+    def get_context_data(self, **kwargs):
+        return super(RecommendView, self).get_context_data()
