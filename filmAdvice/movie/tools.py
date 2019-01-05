@@ -7,6 +7,7 @@ YOUTUBE_API_VERSION = "v3"
 
 
 def youtube_search(q, year, max_results=1, order="relevance", token=None, location=None, location_radius=None):
+    print("Debug2")
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=q + str(year) + str(" trailer"),

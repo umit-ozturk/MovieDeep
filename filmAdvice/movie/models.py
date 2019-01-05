@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from filmAdvice.movie.tools import movie_info
 
 
 class Movie(models.Model):
@@ -26,6 +27,9 @@ class Movie(models.Model):
         except Exception as ex:
             print(ex)
             pass
+
+    def get_movie_banner(self):
+        return movie_info(self.imdb_id)['image']['url']
 
     def save(self, *args, **kwargs):
         if not self.slug:

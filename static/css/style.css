@@ -336,3 +336,23 @@ html {
 .sr-only { margin-left: 5px;overflow: visible;clip: auto; }
 
 /* Rating Cart Finished */
+
+
+
+.movie-content{
+  position: relative;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+
+}
+
+
+@media (min-width: 768px) {
+  .movie-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}

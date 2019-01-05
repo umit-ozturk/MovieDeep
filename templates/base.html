@@ -19,8 +19,8 @@
   <body>
     <div id="movie_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
-        <div id="movie_content" class="modal-content">
-          ...
+        <div id="movie_content" class="movie-content text-center">
+
         </div>
       </div>
     </div>
@@ -154,13 +154,24 @@
     {% endblock %}
 <script>
 
+
 $(document).ready(function() {
-    $('#rate_button').on('click', function() { // catch the form's submit event
+
+    function movieFormat(movies){
+        movieContent = "<img src='" + movies.get_movie_banner + "' style='max-width: 350px' class='img-responsive' alt='' />"
+        return movieContent
+    }
+
+
+    $('#rate_button').on('click', function() {
         $.ajax({
             url: "{% url 'movies:get_random_movies' %}",
             success: function(data) {
-                $("#movie_content").html(data);
-                jQuery("#movie_modal").modal('show');
+                console.log(data)
+                movies = data['random_movie'][0]
+                movie_html = movieFormat(movies)
+                $('#movie_content').html(movie_html)
+                jQuery('#movie_modal').modal('show');
             },
             error: function(e) {
                 console.log(e);
