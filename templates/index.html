@@ -8,11 +8,7 @@
             <h1 class="jumbotron-heading text-light">Your Favorite Movie</h1>
             <p class="lead text-muted">Find your favorite movie with MovieDeep right now.</p>
               <p>
-                <form method='POST' class="gia-form">
-                    {% csrf_token %}
-                    <button name="rate_button" class="btn btn-primary my-2">Find Your Movie</button>
-                    <button name="rate_button" class="btn btn-secondary my-2">Quick Rate Now</button>
-                </form>
+                  <a id="rate_button" name="rate_button" class="btn btn-primary my-2"  href="#">Find Your Movie</a>
               </p>
           </div>
         </section>
@@ -55,4 +51,6 @@
         </div>
       </div>
     </main>
+{% endblock %}
+{% block script %}
 {% endblock %}

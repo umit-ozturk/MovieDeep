@@ -1,11 +1,22 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response, HttpResponse, reverse
+import json
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from filmAdvice.movie.models import Movie
 from filmAdvice.movie.tools import *
 from filmAdvice.movie.serailizers import MovieSerializer
-from filmAdvice.system.tools import *
+from filmAdvice.movie.mixins import JSONResponseMixin
 import random
+
+
+def get_random_movies(request):
+    if request.is_ajax():
+        random_movies = random.sample(list(Movie.objects.all()), k=20)
+        serialized_random_movies = MovieSerializer(random_movies, many=True).data
+        return HttpResponse(json.dumps({'message': "Its Ok", 'random_movies': serialized_random_movies}))
+        # obj = serialized_random_movies
+        # return JSONResponseMixin.render_to_response(obj)
+    return HttpResponse(json.dumps({'message': "Its Ok"}))
 
 
 class HomeView(TemplateView):
@@ -19,13 +30,6 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(movies=self.get_popular_movies(),
                                                          movie_data=self.get_movie_info(imdb_id), **kwargs)
         return context
-
-    def post(self, request):
-        if 'rate_button' in self.request.POST:
-            random_movies = random.sample(list(Movie.objects.all()), k=20)
-            serialized_random_movies = MovieSerializer(random_movies, many=True).data
-            return JsonResponse({'random_movies': serialized_random_movies})
-        return None
 
     def get_popular_movies(self):
         return popular_movies()['ranks'][:24]
