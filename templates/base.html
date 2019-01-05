@@ -11,12 +11,19 @@
       <!-- Bootstrap core CSS -->
       <link href="{% static '/css/bootstrap.css' %}" rel="stylesheet">
       <link href="{% static '/css/style.css' %}" rel="stylesheet">
+      <link href="{% static '/css/popup.css' %}" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{% static '/css/star-rating.css' %}">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
   </head>
 
   <body>
-
+    <div id="movie_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div id="movie_content" class="modal-content">
+          ...
+        </div>
+      </div>
+    </div>
     <header>
       <div class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
         <div class="container">
@@ -152,7 +159,8 @@ $(document).ready(function() {
         $.ajax({
             url: "{% url 'movies:get_random_movies' %}",
             success: function(data) {
-                console.log(data);
+                $("#movie_content").html(data);
+                jQuery("#movie_modal").modal('show');
             },
             error: function(e) {
                 console.log(e);

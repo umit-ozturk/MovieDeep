@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect, render_to_response, HttpResponse, reverse
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import HttpResponse
 import json
 from django.views.generic import TemplateView
-from django.http import JsonResponse
 from filmAdvice.movie.models import Movie
 from filmAdvice.movie.tools import *
 from filmAdvice.movie.serailizers import MovieSerializer
-from filmAdvice.movie.mixins import JSONResponseMixin
 import random
 
 
+@login_required
 def get_random_movies(request):
     if request.is_ajax():
         random_movies = random.sample(list(Movie.objects.all()), k=20)
