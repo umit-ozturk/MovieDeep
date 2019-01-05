@@ -1,8 +1,10 @@
 from django.views.generic import TemplateView
+from django.http import JsonResponse
 from filmAdvice.movie.models import Movie
 from filmAdvice.system.tools import *
 from filmAdvice.movie.tools import *
 from django.shortcuts import render, redirect
+import random
 
 
 class HomeView(TemplateView):
@@ -16,6 +18,14 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(movies=self.get_popular_movies(),
                                                          movie_data=self.get_movie_info(imdb_id), **kwargs)
         return context
+
+    def post(self, request):
+        if 'rate_button' in self.request.POST:
+            random_movie = random.sample(list(Movie.objects.all()), k=20)
+            print(random_movie)
+            data = {'random_movies': random_movie}
+            return JsonResponse(data)
+        return None
 
     def get_popular_movies(self):
         return popular_movies()['ranks'][:24]

@@ -8,8 +8,11 @@
             <h1 class="jumbotron-heading text-light">Your Favorite Movie</h1>
             <p class="lead text-muted">Find your favorite movie with MovieDeep right now.</p>
               <p>
-                <a href="{% url 'movies:recommend' %}" class="btn btn-primary my-2">Find Your Movie</a>
-                <a href="{% url 'movies:recommend' %}" class="btn btn-secondary my-2">Quick Rate Now</a>
+                <form method='POST' class="gia-form">
+                    {% csrf_token %}
+                    <button name="rate_button" class="btn btn-primary my-2">Find Your Movie</button>
+                    <button name="rate_button" class="btn btn-secondary my-2">Quick Rate Now</button>
+                </form>
               </p>
           </div>
         </section>
