@@ -1,9 +1,10 @@
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from filmAdvice.movie.models import Movie
-from filmAdvice.system.tools import *
 from filmAdvice.movie.tools import *
-from django.shortcuts import render, redirect
+from filmAdvice.movie.serailizers import MovieSerializer
+from filmAdvice.system.tools import *
 import random
 
 
@@ -21,10 +22,9 @@ class HomeView(TemplateView):
 
     def post(self, request):
         if 'rate_button' in self.request.POST:
-            random_movie = random.sample(list(Movie.objects.all()), k=20)
-            print(random_movie)
-            data = {'random_movies': random_movie}
-            return JsonResponse(data)
+            random_movies = random.sample(list(Movie.objects.all()), k=20)
+            serialized_random_movies = MovieSerializer(random_movies, many=True).data
+            return JsonResponse({'random_movies': serialized_random_movies})
         return None
 
     def get_popular_movies(self):
