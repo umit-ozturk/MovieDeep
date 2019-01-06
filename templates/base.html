@@ -22,6 +22,7 @@
         <div id="movie_content" class="movie-content text-center">
 
         </div>
+
       </div>
     </div>
     <header>
@@ -86,6 +87,7 @@
         </div>
 
       </div>
+     </div>
     </header>
 
 
@@ -155,11 +157,21 @@
 <script>
 
 
+
+
+
+
+
+
 $(document).ready(function() {
 
     function movieFormat(movies){
-        movieContent = "<img src='" + movies.get_movie_banner + "' style='max-width: 350px' class='img-responsive' alt='' />"
+        movieContent = "<img src='" + movies.get_movie_banner + "' style='max-width: 350px' class='img-responsive' alt='' /><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button  class='rating-1 small'><span></span> So Bad</button><button  class='rating-2 small'><span></span> Bad</button><button  class='rating-3 small'><span></span> Medium</button><button  class='rating-4 small'><span></span> Good</button><button  class='rating-5 small'><span></span> Awesome</button></div>"
         return movieContent
+    }
+
+    function fetchMovie(data){
+        return data['random_movie'][0]
     }
 
 
@@ -167,10 +179,10 @@ $(document).ready(function() {
         $.ajax({
             url: "{% url 'movies:get_random_movies' %}",
             success: function(data) {
-                console.log(data)
-                movies = data['random_movie'][0]
-                movie_html = movieFormat(movies)
+                movie = fetchMovie(data)
+                movie_html = movieFormat(movie)
                 $('#movie_content').html(movie_html)
+
                 jQuery('#movie_modal').modal('show');
             },
             error: function(e) {
