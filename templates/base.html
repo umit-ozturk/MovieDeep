@@ -17,8 +17,14 @@
   </head>
 
   <body>
+<style>
+
+
+
+
+</style>
     <div id="movie_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg" style="pointer-events: auto">
         <div id="movie_content" class="movie-content text-center">
 
         </div>
@@ -166,7 +172,7 @@
 $(document).ready(function() {
 
     function movieFormat(movies){
-        movieContent = "<img src='" + movies.get_movie_banner + "' style='max-width: 350px' class='img-responsive' alt='' /><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button  class='rating-1 small'><span></span> So Bad</button><button  class='rating-2 small'><span></span> Bad</button><button  class='rating-3 small'><span></span> Medium</button><button  class='rating-4 small'><span></span> Good</button><button  class='rating-5 small'><span></span> Awesome</button></div>"
+        movieContent = "<a href=''> <img src='" + movies.get_movie_banner + "' class='img-responsive' alt='' /></a><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button class='rating-1 small'><span></span> So Bad</button><button class='rating-2 small'><span></span> Bad</button><button class='rating-3 small'><span></span> Medium</button><button class='rating-4 small'><span></span> Good</button><button class='rating-5 small'><span></span> Awesome</button></div><div class='rating-skip action-button'>Haven\'t Seen</div> </div>"
         return movieContent
     }
 

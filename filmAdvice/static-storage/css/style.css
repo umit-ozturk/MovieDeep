@@ -470,6 +470,16 @@ html {
  background-color:#227cab
 }
 
-
+.action-button{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    background: 0 0;
+    border: none;
+    outline: 0;
+}
 
 /* Rate Buttons are Finished */
