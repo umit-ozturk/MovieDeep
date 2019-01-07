@@ -25,6 +25,9 @@
 </style>
     <div id="movie_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" style="pointer-events: auto">
+        <button style="color:#fff; font-size: 2rem;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <div id="movie_content" class="movie-content text-center">
 
         </div>
@@ -172,7 +175,7 @@
 $(document).ready(function() {
 
     function movieFormat(movies){
-        movieContent = "<a href=''> <img src='" + movies.get_movie_banner + "' class='img-responsive' alt='' /></a><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button class='rating-1 small'><span></span> So Bad</button><button class='rating-2 small'><span></span> Bad</button><button class='rating-3 small'><span></span> Medium</button><button class='rating-4 small'><span></span> Good</button><button class='rating-5 small'><span></span> Awesome</button></div><div class='rating-skip action-button'>Haven\'t Seen</div> </div>"
+        movieContent = "<a href='/movie/" + movies.slug + "'> <img src='" + movies.get_movie_banner + "' style='max-width: 370px' class='img-responsive' alt='' /></a><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button id='button-rate-1' name='button-rate-1' class='rating-1 small'><span></span> So Bad</button><button id='button-rate-2' name='button-rate-2' class='rating-2 small'><span></span> Bad</button><button id='button-rate-3' name='button-rate-3' class='rating-3 small'><span></span> Medium</button><button id='button-rate-4' name='button-rate-4' class='rating-4 small'><span></span> Good</button><button id='button-rate-5' name='button-rate-5' class='rating-5 small'><span></span> Awesome</button></div><div class='rating-skip action-button'><button  id='button-rate-5' name='button-rate-5'>Haven't Seen</button></div> </div>"
         return movieContent
     }
 

@@ -428,40 +428,40 @@ html {
  }
 }
 .rating-buttons button.rating-1 {
- left:-200px;
+ left:-210px;
  margin-top: -30px;
 }
 .rating-buttons button.rating-1 span {
- background-color:#9E9E9E
+ background-color:#2f2a52;
 }
 .rating-buttons button.rating-2 {
- left:-120px;
+ left:-130px;
  margin-top: -20px;
 }
 .rating-buttons button.rating-2 span {
- background-color:#1E88E5
+ background-color:#5f5985;
 }
 .rating-buttons button.rating-3 {
- left:-40px;
+ left:-50px;
  margin-top: -10px;
 }
 .rating-buttons button.rating-3 span {
- background-color:#4A148C
+ background-color:#bbbac2;
 }
 .rating-buttons button.rating-4 {
- left:40px;
+ left:30px;
  margin-top: -20px;
 }
 .rating-buttons button.rating-4 span {
- background-color:#f9a11b
+ background-color:#583d69;
 }
 
 .rating-buttons button.rating-5 {
- left:120px;
+ left:110px;
  margin-top: -30px;
 }
 .rating-buttons button.rating-5 span {
- background-color:#f26522
+ background-color:#371c45;
 }
 .rating-buttons button.color-girl span {
  background-color:#e33e69
@@ -470,7 +470,7 @@ html {
  background-color:#227cab
 }
 
-.action-button{
+.action-button button{
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;

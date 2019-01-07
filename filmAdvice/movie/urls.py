@@ -6,4 +6,5 @@ app_name = 'movies'
 urlpatterns = [
     path('recommend/', RecommendView.as_view(template_name="movies/recommend.html"), name='recommend'),
     path('random_movie/', get_random_movies, name='get_random_movies'),
+    path('<str:slug>/', MovieView.as_view(template_name="movies/movie.html"), name='movie_detail'),
 ]
