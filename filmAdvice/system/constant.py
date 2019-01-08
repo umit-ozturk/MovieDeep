@@ -2,6 +2,7 @@ SYSTEM_APP_PATH = '/filmAdvice/system/'
 DATASET_LINKS_FILE = 'links.csv'
 DATASET_MOVIES_FILE = 'movies.csv'
 DATASET_RATINGS_FILE = 'ratings.csv'
+DATASET_TMP_RATINGS_FILE = 'try_ratings.csv'
 DATASET_TAGS_FILE = 'tags.csv'
 
 n_nodes_inpl = 1260

@@ -9,12 +9,17 @@ import random
 import json
 
 
+def get_random_movie():
+    random_movie = random.sample(list(Movie.objects.all()), k=1)
+    serialized_random_movie = MovieSerializer(random_movie, many=True).data
+    return serialized_random_movie
+
+
 @login_required
-def get_random_movies(request):
+def get_random_movie_request(request):
     if request.is_ajax():
-        random_movie = random.sample(list(Movie.objects.all()), k=1)
-        serialized_random_movie = MovieSerializer(random_movie, many=True).data
-        return HttpResponse(json.dumps({'message': "Its Ok", 'random_movie': serialized_random_movie}),
+        random_movie = get_random_movie()
+        return HttpResponse(json.dumps({'message': "OK", 'random_movie': random_movie}),
                             content_type='application/json')
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
@@ -24,8 +29,14 @@ def get_random_movies(request):
 def save_rate_movie(request):
     if request.is_ajax():
         rate = request.POST.get('rate')
+        imdb_id = request.POST.get('movie')
         if isinstance(int(rate), int) and int(rate) in range(0, 6):
-            return HttpResponse(json.dumps({'message': "Its Ok"}), content_type='application/json')
+            movie = Movie.objects.filter(imdb_id=imdb_id)[0]
+            user = request.user
+            if not int(rate) == 0:
+                save_rate_to_csv(user, movie.movie_id, rate)
+            random_movie = get_random_movie()
+            return HttpResponse(json.dumps({'message': "OK", 'random_movie': random_movie}), content_type='application/json')
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
 
