@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, DetailView
 from django.shortcuts import HttpResponse
 from filmAdvice.movie.serailizers import MovieSerializer
-from filmAdvice.movie.models import Movie
+from filmAdvice.movie.models import Movie, WatchHistory
 from filmAdvice.movie.tools import *
 import random
 import json
@@ -34,6 +34,9 @@ def save_rate_movie(request):
             movie = Movie.objects.filter(imdb_id=imdb_id)[0]
             user = request.user
             if not int(rate) == 0:
+                history = WatchHistory(user=user, movie=movie, rate=int(rate))
+                print(history)
+                history.save()
                 save_rate_to_csv(user, movie.movie_id, rate)
             random_movie = get_random_movie()
             return HttpResponse(json.dumps({'message': "OK", 'random_movie': random_movie}), content_type='application/json')
