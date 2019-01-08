@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, DetailView
 from django.shortcuts import HttpResponse
 from filmAdvice.movie.serailizers import MovieSerializer
@@ -13,9 +14,17 @@ def get_random_movies(request):
     if request.is_ajax():
         random_movie = random.sample(list(Movie.objects.all()), k=1)
         serialized_random_movie = MovieSerializer(random_movie, many=True).data
-        print(serialized_random_movie)
         return HttpResponse(json.dumps({'message': "Its Ok", 'random_movie': serialized_random_movie}),
                             content_type='application/json')
+    return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
+
+
+@login_required
+@csrf_exempt
+def save_rate_movie(request):
+    print("Debug")
+    if request.is_ajax():
+        return HttpResponse(json.dumps({'message': "Its Ok"}), content_type='application/json')
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
 
