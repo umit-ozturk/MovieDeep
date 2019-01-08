@@ -22,9 +22,10 @@ def get_random_movies(request):
 @login_required
 @csrf_exempt
 def save_rate_movie(request):
-    print("Debug")
     if request.is_ajax():
-        return HttpResponse(json.dumps({'message': "Its Ok"}), content_type='application/json')
+        rate = request.POST.get('rate')
+        if isinstance(int(rate), int) and int(rate) in range(0, 6):
+            return HttpResponse(json.dumps({'message': "Its Ok"}), content_type='application/json')
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
 
