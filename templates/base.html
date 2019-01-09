@@ -54,7 +54,7 @@
               </li>
                 {% if request.user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link" href="">Recommendation</a>
+                    <a class="nav-link" href="{% url 'movies:recommend' request.user.slug %}">Recommendation</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="">Watchlist</a>

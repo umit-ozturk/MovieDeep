@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, DetailView
 from django.shortcuts import HttpResponse
+from filmAdvice.profile.models import UserProfile
 from filmAdvice.movie.serailizers import MovieSerializer
 from filmAdvice.movie.models import Movie, WatchHistory, Recommend
 from filmAdvice.movie.tools import *
@@ -39,7 +40,6 @@ def save_rate_movie(request):
                 history = WatchHistory(user=user, movie=movie, rate=int(rate))
                 history.save()
                 save_rate_to_csv(user, movie.movie_id, rate)
-                sleep(1)
                 try:
                     # This section must be Celery
                     predictions = take_predict(user.id)
@@ -96,8 +96,22 @@ class MovieView(DetailView):
         return movie_genres(imdb_id)['genres']
 
 
-class RecommendView(TemplateView):
+class RecommendView(DetailView):
     template_name = "movies/recommend.html"
+    queryset = UserProfile.objects.all()
 
     def get_context_data(self, **kwargs):
-        return super(RecommendView, self).get_context_data()
+        return super(RecommendView, self).get_context_data(recommendation=self.get_movies_info())
+
+    def get_user(self):
+        return self.get_object()
+
+    def get_recommendation(self):
+        return Recommend.objects.filter(user=self.get_user())
+
+    def get_movies_info(self):
+        movies_data = []
+        for rec_instance in self.get_recommendation():
+            movie_data = movie_info(rec_instance.movie.imdb_id)
+            movies_data.append(movie_data)
+        return movies_data
