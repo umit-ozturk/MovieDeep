@@ -68,3 +68,17 @@ class WatchList(models.Model):
 
     def __str__(self):
         return '{}'.format(self.user)
+
+
+class Recommend(models.Model):
+    user = models.ForeignKey('profile.UserProfile', max_length=250, null=True, blank=True, on_delete=models.CASCADE)
+    movie = models.ForeignKey('Movie', max_length=250, null=True, blank=True, on_delete=models.CASCADE)
+    created_at = models.DateTimeField('Kayıt Tarihi', auto_now_add=True, editable=False, null=True, blank=True)
+    updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Tahminler"
+        ordering = ('-created_at',)
+
+    def __str__(self):
+        return '{}'.format(self.movie)

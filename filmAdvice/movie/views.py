@@ -35,7 +35,6 @@ def save_rate_movie(request):
             user = request.user
             if not int(rate) == 0:
                 history = WatchHistory(user=user, movie=movie, rate=int(rate))
-                print(history)
                 history.save()
                 save_rate_to_csv(user, movie.movie_id, rate)
             random_movie = get_random_movie()

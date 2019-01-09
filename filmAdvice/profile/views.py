@@ -5,6 +5,7 @@ from django.views.generic import FormView, CreateView, RedirectView, DetailView
 from filmAdvice.profile.mixins import LoginRequiredMixin
 from filmAdvice.profile.forms import RegisterForm, AuthenticationLoginForm
 from filmAdvice.profile.models import UserProfile
+from filmAdvice.movie.models import Movie, WatchHistory, WatchList
 
 
 class RegisterView(CreateView):
@@ -52,5 +53,14 @@ class ProfileDetailView(DetailView):
     queryset = UserProfile.objects.all()
 
     def get_context_data(self, **kwargs):
-        user = self.get_object()
-        return super(ProfileDetailView, self).get_context_data(user=user, **kwargs)
+        return super(ProfileDetailView, self).get_context_data(user=self.get_user(), history=self.get_watch_history,
+                                                               watch_list=self.get_watch_list,  **kwargs)
+
+    def get_user(self):
+        return self.get_object()
+
+    def get_watch_history(self):
+        return WatchHistory.objecsts.filter(user=self.get_user())
+
+    def get_watch_list(self):
+        return WatchList.objects.filtet(user=self.get_user)
