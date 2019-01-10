@@ -110,7 +110,7 @@ class RecommendView(DetailView):
     queryset = UserProfile.objects.all()
 
     def get_context_data(self, **kwargs):
-        return super(RecommendView, self).get_context_data(recommendation=self.get_movies_info())
+        return super(RecommendView, self).get_context_data(recommendation=self.get_recommendation())
 
     def get_user(self):
         return self.get_object()

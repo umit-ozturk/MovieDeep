@@ -33,7 +33,7 @@
             </div>
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                   <li class="nav-item col-3 list-col-3">
-                      <a class="list-group-item list-group-item-action movie-tablist " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab">Friends</a>
+                      <a class="list-group-item list-group-item-action movie-tablist " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab">Predictions</a>
                   </li>
                   <li class="nav-item col-3 list-col-3">
                     <a class="list-group-item list-group-item-action movie-tablist " id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">Watchlist</a>
@@ -46,7 +46,42 @@
                   </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
-                  <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Soo Sooon</div>
+                  <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                    <main role="main">
+                        <div class="album py-5 bg-light">
+                            <div class="container">
+                                <div class="row">
+                                  {% if predictions %}
+                                    {% for movie in predictions%}
+                                        <div class="col-md-3">
+                                          <div class="thumbnail">
+                                              <div class="img-responsive">
+                                                  <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
+                                                    <img src="{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
+                                                  </a>
+                                              </div>
+                                              <div class="caption">
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                    <a href="" class="text-left movie-title">
+                                                      <span>{{ movie.movie.movie_name }}</span>
+                                                    </a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                          </div><br>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <span> There is not a film in watch list yet. </span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                                    
+
+                  </div>
                   <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
                     <main role="main">
                         <div class="album py-5 bg-light">
@@ -57,15 +92,15 @@
                                         <div class="col-md-3">
                                           <div class="thumbnail">
                                               <div class="img-responsive">
-                                                  <a href="https://www.imdb.com{{ movie.id }}">
-                                                    <img src="{{ movie.image.url }}" class="img-thumbnail">
+                                                  <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
+                                                    <img src="{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
                                                   </a>
                                               </div>
                                               <div class="caption">
                                                 <div class="row">
                                                   <div class="col-md-12">
                                                     <a href="" class="text-left movie-title">
-                                                      <span>{{ movie.title }}</span>
+                                                      <span>{{ movie.movie.movie_name }}</span>
                                                     </a>
                                                   </div>
                                                 </div>
