@@ -4,10 +4,9 @@ from django.views.generic import TemplateView, DetailView
 from django.shortcuts import HttpResponse
 from filmAdvice.profile.models import UserProfile
 from filmAdvice.movie.serailizers import MovieSerializer
-from filmAdvice.movie.models import Movie, WatchHistory, Recommend
+from filmAdvice.movie.models import Movie, Recommend, WatchHistory, WatchList
 from filmAdvice.movie.tools import *
 from filmAdvice.system.recomender_engine import take_predict
-from time import sleep
 import random
 import json
 
@@ -31,26 +30,36 @@ def get_random_movie_request(request):
 @csrf_exempt
 def save_rate_movie(request):
     if request.is_ajax():
-        rate = request.POST.get('rate')
+        user = request.user
         imdb_id = request.POST.get('movie')
-        if isinstance(int(rate), int) and int(rate) in range(0, 6):
-            movie = Movie.objects.filter(imdb_id=imdb_id)[0]
-            user = request.user
-            if not int(rate) == 0:
-                history = WatchHistory(user=user, movie=movie, rate=int(rate))
-                history.save()
-                save_rate_to_csv(user, movie.movie_id, rate)
-                try:
-                    # This section must be Celery
-                    predictions = take_predict(user.id)
-                    for prediction in predictions:
-                        rec_movie = Movie.objects.filter(movie_id=prediction).first()
-                        recommend = Recommend(user=user, movie=rec_movie)
-                        recommend.save()
-                except Exception as e:
-                    print(e)
+        if request.POST.get('watchlist'):
+            movie = Movie.objects.filter(imdb_id=imdb_id).first()
+            watch_list = WatchList(user=user, movie=movie)
+            watch_list.save()
             random_movie = get_random_movie()
-            return HttpResponse(json.dumps({'message': "OK", 'random_movie': random_movie}), content_type='application/json')
+            return HttpResponse(json.dumps({'message': "OK", 'random_movie': random_movie}),
+                                content_type='application/json')
+        if request.POST.get('rate'):
+            rate = request.POST.get('rate')
+            if isinstance(int(rate), int) and int(rate) in range(0, 6):
+                movie = Movie.objects.filter(imdb_id=imdb_id)[0]
+                if not int(rate) == 0:
+                    movie = Movie.objects.filter(imdb_id=imdb_id).first()
+                    history = WatchHistory(user=user, movie=movie, rate=int(rate))
+                    history.save()
+                    save_rate_to_csv(user, movie.movie_id, rate)
+                    try:
+                        # This section must be Celery
+                        predictions = take_predict(user.id)
+                        for prediction in predictions:
+                            rec_movie = Movie.objects.filter(movie_id=prediction).first()
+                            recommend = Recommend(user=user, movie=rec_movie)
+                            recommend.save()
+                    except Exception as e:
+                        print(e)
+                random_movie = get_random_movie()
+                return HttpResponse(json.dumps({'message': "OK", 'random_movie': random_movie}),
+                                    content_type='application/json')
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
 
