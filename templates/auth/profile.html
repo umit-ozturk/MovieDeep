@@ -27,7 +27,7 @@
                 <div class="useravatar">
                     <img alt="" src="/media/site/background.jpg">
                 </div>
-                <div class="card-info"> <span class="card-title">Pamela Anderson</span>
+                <div class="card-info"> <span class="card-title">{{ user.get_slug_field }}</span>
 
                 </div>
             </div>
@@ -39,12 +39,83 @@
                     <a class="list-group-item list-group-item-action movie-tablist " id="list-messages-list" data-toggle="list" href="#list-messages" role="tab">Watchlist</a>
                   </li>
                   <li class="nav-item col-3 list-col-3">
-                    <a class="list-group-item list-group-item-action movie-tablist " id="list-settings-list" data-toggle="list" href="#list-settings" role="tab">Watch History</a>
+                    <a class="list-group-item list-group-item-action movie-tablist " id="list-watch-list" data-toggle="list" href="#list-watchlist" role="tab">Watch History</a>
+                  </li>
+                  <li class="nav-item col-3 list-col-3">
+                    <a class="list-group-item list-group-item-action movie-tablist " id="list-settings-list" data-toggle="list" href="#list-settings" role="tab">Settings</a>
                   </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                   <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Soo Sooon</div>
-                  <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Soooo Sooon</div>
+                  <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                    <main role="main">
+                        <div class="album py-5 bg-light">
+                            <div class="container">
+                                <div class="row">
+                                {% if watch_list %}
+                                    {% for movie in watch_list%}
+                                        <div class="col-md-3">
+                                          <div class="thumbnail">
+                                              <div class="img-responsive">
+                                                  <a href="https://www.imdb.com{{ movie.id }}">
+                                                    <img src="{{ movie.image.url }}" class="img-thumbnail">
+                                                  </a>
+                                              </div>
+                                              <div class="caption">
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                    <a href="" class="text-left movie-title">
+                                                      <span>{{ movie.title }}</span>
+                                                    </a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                          </div><br>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <span> There is not a film in watch list yet. </span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                  </div>
+                  <div class="tab-pane fade" id="list-watchlist" role="tabpanel" aria-labelledby="list-watch-list">
+                    <main role="main">
+                        <div class="album py-5 bg-light">
+                            <div class="container">
+                                <div class="row">
+                                {% if history %}
+                                    {% for movie in history %}
+                                        <div class="col-md-3">
+                                          <div class="thumbnail">
+                                              <div class="img-responsive">
+                                                  <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
+                                                    <img src="{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
+                                                  </a>
+                                              </div>
+                                              <div class="caption">
+                                                <div class="row">
+                                                  <div class="col-md-12">
+                                                    <a href="" class="text-left movie-title">
+                                                      <span>{{ movie.movie.movie_name }}</span>
+                                                    </a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                          </div><br>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <span> There is not a film in watch list yet. </span>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                  </div>
                   <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">sooooooooo Soooooon</div>
                 </div>
         </div>

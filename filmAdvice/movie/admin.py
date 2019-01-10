@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from filmAdvice.movie.models import Movie
+from filmAdvice.movie.models import Movie, WatchHistory
 from filmAdvice.movie.resources import MovieResource
 
 
@@ -11,3 +11,9 @@ class MovieAdmin(ImportExportModelAdmin):
     resource_class = MovieResource
 
     readonly_fields = ('slug',)
+
+
+@admin.register(WatchHistory)
+class WatchHistoryAdmin(ImportExportModelAdmin):
+    list_display = ('user', 'movie',)
+    search_fields = ('movie',)

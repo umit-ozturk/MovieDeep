@@ -42,11 +42,11 @@ def save_rate_movie(request):
         if request.POST.get('rate'):
             rate = request.POST.get('rate')
             if isinstance(int(rate), int) and int(rate) in range(0, 6):
-                movie = Movie.objects.filter(imdb_id=imdb_id)[0]
                 if not int(rate) == 0:
                     movie = Movie.objects.filter(imdb_id=imdb_id).first()
                     history = WatchHistory(user=user, movie=movie, rate=int(rate))
                     history.save()
+                    print(WatchHistory.objects.all())
                     save_rate_to_csv(user, movie.movie_id, rate)
                     try:
                         # This section must be Celery

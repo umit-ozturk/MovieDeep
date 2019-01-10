@@ -4,26 +4,30 @@
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row">
-            {% for movie in watch_list %}
-                <div class="col-md-3">
-                  <div class="thumbnail">
-                      <div class="img-responsive">
-                          <a href="https://www.imdb.com{{ movie.id }}">
-                            <img src="{{ movie.image.url }}" class="img-thumbnail">
-                          </a>
-                      </div>
-                      <div class="caption">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <a href="" class="text-left movie-title">
-                              <span>{{ movie.title }}</span>
-                            </a>
+            {% if watch_list %}
+                {% for movie in watch_list %}
+                    <div class="col-md-3">
+                      <div class="thumbnail">
+                          <div class="img-responsive">
+                              <a href="https://www.imdb.com{{ movie.id }}">
+                                <img src="{{ movie.image.url }}" class="img-thumbnail">
+                              </a>
                           </div>
-                        </div>
-                      </div>
-                  </div><br>
-                </div>
-            {% endfor %}
+                          <div class="caption">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <a href="" class="text-left movie-title">
+                                  <span>{{ movie.title }}</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                      </div><br>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <span> There is not a film in watch list yet. </span>
+            {% endif %}
             </div>
         </div>
     </div>

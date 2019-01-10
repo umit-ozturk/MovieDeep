@@ -60,10 +60,10 @@ class ProfileDetailView(DetailView):
         return self.get_object()
 
     def get_watch_history(self):
-        return WatchHistory.objecsts.filter(user=self.get_user())
+        return WatchHistory.objects.filter(user=self.get_user())
 
     def get_watch_list(self):
-        return WatchList.objects.filtet(user=self.get_user())
+        return WatchList.objects.filter(user=self.get_user())
 
 
 class WatchListDetailView(DetailView):

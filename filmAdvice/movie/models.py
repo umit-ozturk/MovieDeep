@@ -34,7 +34,6 @@ class Movie(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             if self._get_unique_slug() is not None:
-                print(self._get_unique_slug())
                 self.slug = self._get_unique_slug()
             else:
                 pass
