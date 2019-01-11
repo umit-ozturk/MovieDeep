@@ -6,8 +6,6 @@ from sklearn.metrics import mean_squared_error as MSE
 from filmAdvice.system.constant import *
 from filmAdvice.movie.models import Recommend
 
-
-
 DATASET_TMP_RATINGS_FILE = "filmAdvice/system/try_ratings.csv"
 
 
