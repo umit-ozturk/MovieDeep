@@ -19,7 +19,8 @@
             <h1 class="jumbotron-heading text-light">Your Favorite Movie</h1>
             <p class="lead text-muted">Find your favorite movie with MovieDeep right now.</p>
             <p>
-                <button name="rate_button" class="btn btn-primary my-2">Find Your Movie</button>
+                <a href="{% url 'profiles:auth_registration' %}" class="btn btn-primary my-2">Register Rigth Now</a> <span style="color:#efefef;">Or</span>
+                <a href="{% url 'profiles:auth_login' %}" class="btn btn-primary my-2">Login</a>
             </p>
           </div>
         </section>
