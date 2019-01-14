@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('filmAdvice.profile.urls', namespace='profiles')),
     path('', HomeView.as_view(), name='home'),
     path('movie/', include('filmAdvice.movie.urls', namespace='movies')),
+    path('oauth/', include('social_django.urls', namespace='social')),
 
 ]
 
