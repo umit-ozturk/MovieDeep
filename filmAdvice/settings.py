@@ -176,6 +176,10 @@ APP_MAIN_CURRENT_PATH = os.getcwd()
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/oauth-settings/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/oauth-settings/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
 try:
     from filmAdvice.local_settings import *
 except ImportError:

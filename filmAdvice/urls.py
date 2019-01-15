@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from rest_framework.documentation import include_docs_urls
 from filmAdvice.api.permissions import DocumentAuthenticated
 from filmAdvice.movie.views import HomeView
+from filmAdvice.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,9 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('movie/', include('filmAdvice.movie.urls', namespace='movies')),
     path('oauth/', include('social_django.urls', namespace='social')),
+    path('oauth-settings/', setting, name='settings'),
+    path('oauth-settings/password', password, name='password'),
+
 
 ]
 
