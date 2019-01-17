@@ -82,6 +82,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'filmAdvice.wsgi.application'
 
 
+BROKER_URL = 'redis://localhost:6379'
+
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
