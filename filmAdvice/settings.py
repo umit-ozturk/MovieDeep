@@ -82,7 +82,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'filmAdvice.wsgi.application'
 
 
-BROKER_URL = 'redis://localhost:6379'
+# Celery application definition
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+
+
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
