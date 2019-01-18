@@ -6,7 +6,7 @@ from filmAdvice.profile.models import UserProfile
 from filmAdvice.movie.serailizers import MovieSerializer
 from filmAdvice.movie.models import Movie, Recommend, WatchHistory, WatchList
 from filmAdvice.movie.tools import *
-from filmAdvice.system.recomender_engine import take_predict
+from filmAdvice.system.tasks import task_take_predict
 import random
 import json
 
@@ -46,15 +46,9 @@ def save_rate_movie(request):
                     movie = Movie.objects.filter(imdb_id=imdb_id).first()
                     history = WatchHistory(user=user, movie=movie, rate=int(rate))
                     history.save()
-                    print(WatchHistory.objects.all())
                     save_rate_to_csv(user, movie.movie_id, rate)
                     try:
-                        # This section must be Celery
-                        predictions = take_predict(user.id)
-                        for prediction in predictions:
-                            rec_movie = Movie.objects.filter(movie_id=prediction).first()
-                            recommend = Recommend(user=user, movie=rec_movie)
-                            recommend.save()
+                        task_take_predict.delay(user.id)
                     except Exception as e:
                         print(e)
                 random_movie = get_random_movie()
