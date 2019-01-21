@@ -13,7 +13,6 @@ def task_take_predict(user_id):
     try:
         Recommend.objects.filter(user=user_id).delete()
         x_train, x_test, input_layer, output_layer, user_predictions = recomender_engine(user_id)
-        logger.info(user_id)
         save_recommendations(user_predictions, user_id)
         logger.info("Save Recommendation is Success")
     except Exception as e:

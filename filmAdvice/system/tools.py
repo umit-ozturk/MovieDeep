@@ -44,5 +44,6 @@ def save_recommendations(predictions, user_id):
     for prediction in predictions:
         rec_movie = Movie.objects.filter(movie_id=prediction).first()
         user = UserProfile.objects.filter(id=user_id)
+        print(user)
         recommend = Recommend(user=user, movie=rec_movie)
         recommend.save()

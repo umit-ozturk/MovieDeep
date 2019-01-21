@@ -8,6 +8,7 @@ class Movie(models.Model):
     imdb_id = models.CharField('IMDB ID', max_length=25, null=True, blank=True)
     movie_name = models.CharField('Film Adı', max_length=250, null=True, blank=True)
     slug = models.SlugField('Film Slug', null=True, max_length=300, blank=True)
+    movie_pic = models.ImageField('Afiş', upload_to='pic_folder/', null=True, blank=True)
     created_at = models.DateTimeField('Kayıt Tarihi', auto_now_add=True, editable=False, null=True, blank=True)
     updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False, null=True, blank=True)
 
