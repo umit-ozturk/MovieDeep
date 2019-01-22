@@ -1,5 +1,10 @@
+from django.core.files.base import ContentFile
+import requests
+from io import StringIO
+from PIL import Image
 from django.db import models
 from django.utils.text import slugify
+from tempfile import NamedTemporaryFile
 from filmAdvice.movie.tools import movie_info
 
 
@@ -9,6 +14,7 @@ class Movie(models.Model):
     movie_name = models.CharField('Film Adı', max_length=250, null=True, blank=True)
     slug = models.SlugField('Film Slug', null=True, max_length=300, blank=True)
     movie_pic = models.ImageField('Afiş', upload_to='pic_folder/', null=True, blank=True)
+    movie_pic_url = models.URLField('Afis URL', null=True, blank=True)
     created_at = models.DateTimeField('Kayıt Tarihi', auto_now_add=True, editable=False, null=True, blank=True)
     updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False, null=True, blank=True)
 
@@ -30,7 +36,10 @@ class Movie(models.Model):
             pass
 
     def get_movie_banner(self):
-        return movie_info(self.imdb_id)['image']['url']
+        if not self.movie_pic:
+            self.movie_pic_url = movie_info(self.imdb_id)['image']['url']
+            self.movie_pic = requests.get(self.movie_pic_url)
+        return self.movie_pic
 
     def save(self, *args, **kwargs):
         if not self.slug:

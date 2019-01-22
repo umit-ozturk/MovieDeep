@@ -6,7 +6,7 @@ from filmAdvice.movie.resources import MovieResource
 
 @admin.register(Movie)
 class MovieAdmin(ImportExportModelAdmin):
-    list_display = ('movie_name', 'movie_id', 'imdb_id', 'slug',)
+    list_display = ('movie_name', 'imdb_id', 'movie_pic', 'slug',)
     search_fields = ('movie_name',)
     resource_class = MovieResource
 
