@@ -1,11 +1,12 @@
-from django.core.files.base import ContentFile
+import io
+
 import requests
-from io import StringIO
 from PIL import Image
 from django.db import models
 from django.utils.text import slugify
-from tempfile import NamedTemporaryFile
 from filmAdvice.movie.tools import movie_info
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
 
 
 class Movie(models.Model):
@@ -37,9 +38,15 @@ class Movie(models.Model):
 
     def get_movie_banner(self):
         if not self.movie_pic:
-            self.movie_pic_url = movie_info(self.imdb_id)['image']['url']
-            self.movie_pic = requests.get(self.movie_pic_url)
-        return self.movie_pic
+            movie = Movie.objects.filter(movie_id=self.movie_id)[0]
+            movie_pic_url = movie_info(movie.imdb_id)['image']['url']
+            image = requests.get(movie_pic_url).content
+            img_temp = NamedTemporaryFile(delete=True)
+            img_temp.write(image)
+            img_temp.flush()
+            movie.movie_pic.save(self.movie_name, File(img_temp), save=True)
+        print("Debug1")
+        return self.movie_pic_url
 
     def save(self, *args, **kwargs):
         if not self.slug:
