@@ -1,7 +1,4 @@
-import io
-
 import requests
-from PIL import Image
 from django.db import models
 from django.utils.text import slugify
 from filmAdvice.movie.tools import movie_info
@@ -45,7 +42,6 @@ class Movie(models.Model):
             img_temp.write(image)
             img_temp.flush()
             movie.movie_pic.save(self.movie_name, File(img_temp), save=True)
-        print("Debug1")
         return self.movie_pic_url
 
     def save(self, *args, **kwargs):
