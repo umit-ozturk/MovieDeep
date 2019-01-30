@@ -12,7 +12,7 @@ class Movie(models.Model):
     movie_name = models.CharField('Film Adı', max_length=250, null=True, blank=True)
     slug = models.SlugField('Film Slug', null=True, max_length=300, blank=True)
     movie_pic = models.ImageField('Afiş', upload_to='pic_folder/', null=True, blank=True)
-    movie_pic_url = models.URLField('Afis URL', null=True, blank=True)
+    movie_pic_url = models.CharField('Afis URL', max_length=200, null=True, blank=True)
     created_at = models.DateTimeField('Kayıt Tarihi', auto_now_add=True, editable=False, null=True, blank=True)
     updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False, null=True, blank=True)
 
@@ -34,6 +34,7 @@ class Movie(models.Model):
             pass
 
     def get_movie_banner(self):
+        print("Debug0")
         if not self.movie_pic:
             movie = Movie.objects.filter(movie_id=self.movie_id)[0]
             movie_pic_url = movie_info(movie.imdb_id)['image']['url']
@@ -41,7 +42,9 @@ class Movie(models.Model):
             img_temp = NamedTemporaryFile(delete=True)
             img_temp.write(image)
             img_temp.flush()
-            movie.movie_pic.save(self.movie_name, File(img_temp), save=True)
+            movie.movie_pic.save(self.movie_name + ".jpg", File(img_temp), save=True)
+            movie.movie_pic_url = self.movie_name + ".jpg"
+            movie.save()
         return self.movie_pic_url
 
     def save(self, *args, **kwargs):

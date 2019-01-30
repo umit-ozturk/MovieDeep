@@ -57,7 +57,7 @@
                                           <div class="thumbnail">
                                               <div class="img-responsive">
                                                   <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
-                                                    <img src="{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
+                                                    <img src="/media/{{ movie.movie_pic_url }}" class="img-thumbnail">
                                                   </a>
                                               </div>
                                               <div class="caption">
@@ -93,7 +93,7 @@
                                           <div class="thumbnail">
                                               <div class="img-responsive">
                                                   <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
-                                                    <img src="{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
+                                                    <img src="/media/{{ movie.movie_pic_url }}" class="img-thumbnail">
                                                   </a>
                                               </div>
                                               <div class="caption">
@@ -128,7 +128,7 @@
                                           <div class="thumbnail">
                                               <div class="img-responsive">
                                                   <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
-                                                    <img src="{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
+                                                    <img src="/media/{{ movie.movie.movie_pic }}" class="img-thumbnail">
                                                   </a>
                                               </div>
                                               <div class="caption">
