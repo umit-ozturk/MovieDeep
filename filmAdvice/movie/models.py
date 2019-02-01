@@ -34,7 +34,6 @@ class Movie(models.Model):
             pass
 
     def get_movie_banner(self):
-        print("Debug0")
         if not self.movie_pic:
             movie = Movie.objects.filter(movie_id=self.movie_id)[0]
             movie_pic_url = movie_info(movie.imdb_id)['image']['url']
@@ -45,6 +44,7 @@ class Movie(models.Model):
             movie.movie_pic.save(self.movie_name + ".jpg", File(img_temp), save=True)
             movie.movie_pic_url = self.movie_name + ".jpg"
             movie.save()
+            return movie_pic_url
         return self.movie_pic_url
 
     def save(self, *args, **kwargs):
