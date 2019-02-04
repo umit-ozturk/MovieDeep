@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from filmAdvice.movie.models import Movie, WatchHistory
+from filmAdvice.movie.models import Movie, WatchHistory, Recommend
 from filmAdvice.movie.resources import MovieResource
 
 
@@ -16,4 +16,10 @@ class MovieAdmin(ImportExportModelAdmin):
 @admin.register(WatchHistory)
 class WatchHistoryAdmin(ImportExportModelAdmin):
     list_display = ('user', 'movie',)
+    search_fields = ('movie',)
+
+
+@admin.register(Recommend)
+class RecommendAdmin(admin.ModelAdmin):
+    list_display = ('user', 'movie', 'created_at')
     search_fields = ('movie',)
