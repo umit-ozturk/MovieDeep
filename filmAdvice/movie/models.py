@@ -41,8 +41,8 @@ class Movie(models.Model):
             img_temp = NamedTemporaryFile(delete=True)
             img_temp.write(image)
             img_temp.flush()
-            movie.movie_pic.save(self.movie_name + ".jpg", File(img_temp), save=True)
-            movie.movie_pic_url = self.movie_name + ".jpg"
+            movie.movie_pic.save(slugify(self.movie_name) + ".jpg", File(img_temp), save=True)
+            movie.movie_pic_url = slugify(self.movie_name) + ".jpg"
             movie.save()
             return movie_pic_url
         return self.movie_pic_url

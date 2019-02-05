@@ -110,8 +110,6 @@ class RecommendView(DetailView):
         return self.get_object()
 
     def get_recommendation(self):
-        print(self.get_user())
-        print(Recommend.objects.all())
         return Recommend.objects.filter(user=self.get_user())
 
     def get_movies_info(self):
