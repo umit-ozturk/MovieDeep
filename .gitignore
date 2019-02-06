@@ -201,3 +201,6 @@ pip-selfcheck.json
 
 
 # End of https://www.gitignore.io/api/python,django,pycharm,virtualenv
+
+static/
+*.DS_Store
