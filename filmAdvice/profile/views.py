@@ -70,16 +70,33 @@ class ProfileDetailView(DetailView):
         return WatchList.objects.filter(user=self.get_user())
 
 
+class WatchHistoryDetailView(DetailView):
+    template_name = "movies/watch_list.html"
+    queryset = UserProfile.objects.all()
+
+    def get_context_data(self, **kwargs):
+        return super(WatchHistoryDetailView, self).get_context_data(user=self.get_user(),
+                                                                    history=self.get_watch_history(), **kwargs)
+
+    def get_user(self):
+        return self.get_object()
+
+    def get_watch_history(self):
+        return WatchHistory.objects.filter(user=self.get_user())
+
+
 class WatchListDetailView(DetailView):
     template_name = "movies/watch_list.html"
     queryset = UserProfile.objects.all()
 
     def get_context_data(self, **kwargs):
         return super(WatchListDetailView, self).get_context_data(user=self.get_user(),
-                                                                 watch_list=self.get_watch_list(),  **kwargs)
+                                                                 watch_list=self.get_watch_list(), **kwargs)
 
     def get_user(self):
         return self.get_object()
 
     def get_watch_list(self):
+        print(self.get_user())
+        print(WatchList.objects.filter(user=self.get_user()))
         return WatchList.objects.filter(user=self.get_user())

@@ -57,6 +57,9 @@
                     <a class="nav-link" href="{% url 'movies:recommend' request.user.slug %}">Recommendation</a>
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profiles:watch_history' request.user.slug %}">WatchHistory</a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="{% url 'profiles:watch_list' request.user.slug %}">Watchlist</a>
                   </li>
                   <li class="nav-item">
