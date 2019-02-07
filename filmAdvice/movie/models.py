@@ -65,6 +65,7 @@ class WatchHistory(models.Model):
 
     class Meta:
         verbose_name = "İzleme Geçmişim"
+        verbose_name_plural = "İzleme Geçmişim"
         ordering = ('-created_at',)
 
     def __str__(self):
@@ -78,7 +79,8 @@ class WatchList(models.Model):
     updated_at = models.DateTimeField('Güncellenme Tarihi', auto_now=True, editable=False, null=True, blank=True)
 
     class Meta:
-        verbose_name = "İzlemek İstediklerim"
+        verbose_name = "İzleme Listem"
+        verbose_name_plural = "İzleme Listem"
         ordering = ('-created_at',)
 
     def __str__(self):
@@ -93,6 +95,7 @@ class Recommend(models.Model):
 
     class Meta:
         verbose_name = "Tahminler"
+        verbose_name_plural = "Tahminler"
         ordering = ('-created_at',)
 
     def __str__(self):

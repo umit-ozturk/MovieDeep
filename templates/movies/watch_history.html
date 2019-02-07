@@ -9,7 +9,7 @@
                     <div class="col-md-3">
                       <div class="thumbnail">
                           <div class="img-responsive">
-                              <a href="https://www.imdb.com{{ movie.id }}">
+                              <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
                                 <img src="/media/pic_folder/{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
                               </a>
                           </div>
@@ -17,7 +17,7 @@
                             <div class="row">
                               <div class="col-md-12">
                                 <a href="" class="text-left movie-title">
-                                  <span>{{ movie..movie.title }}</span>
+                                  <span>{{ movie.movie.movie_name }}</span>
                                 </a>
                               </div>
                             </div>

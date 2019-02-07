@@ -74,8 +74,10 @@ class MovieView(DetailView):
 
     def get_context_data(self, **kwargs):
         imdb_id = Movie.objects.filter(slug=self.kwargs['slug'])[0].imdb_id
+        movie_pic = Movie.objects.filter(slug=self.kwargs['slug'])[0].get_movie_banner
         movie_base_data = self.get_movie_info(imdb_id)
         return super(MovieView, self).get_context_data(movie_data=movie_base_data,
+                                                       movie_picture=movie_pic, # Not working
                                                        movie_ratings=self.get_movie_ratings(imdb_id),
                                                        movie_crew=self.get_title_crew(imdb_id),
                                                        movie_video=self.get_movie_video(movie_base_data['title'],
