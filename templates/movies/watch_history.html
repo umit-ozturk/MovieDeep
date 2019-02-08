@@ -11,6 +11,9 @@
                           <div class="img-responsive">
                               <a href="{% url 'movies:movie_detail' movie.movie.slug %}">
                                 <img src="/media/pic_folder/{{ movie.movie.get_movie_banner }}" class="img-thumbnail">
+                                  {% if movie.movie.get_movie_banner == "None" %}
+                                        amhsjkdhsjkdhsjkdhsdjshdkjsd
+                                  {% endif %}
                               </a>
                           </div>
                           <div class="caption">
@@ -32,4 +35,7 @@
         </div>
     </div>
 </main>
+{% endblock %}
+{% block script %}
+
 {% endblock %}
