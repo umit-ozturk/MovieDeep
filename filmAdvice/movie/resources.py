@@ -15,10 +15,9 @@ class MovieResource(resources.ModelResource):
         exclude = ('id',)
         import_id_fields = ['movie_name']
 
-    def before_import_row(self, row, **kwargs):
+    def before_import_row(self, row, **kwargs):  # Append On Admin Site
         movie_id = row['movieId']
         movie_name = row['title']
-        print(movie_id)
         try:
             imdb_id = find_imdb_link_for_movie_id(movie_id)
             if not Movie.objects.filter(movie_name=movie_name).exists():
