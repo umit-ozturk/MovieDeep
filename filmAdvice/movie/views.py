@@ -57,6 +57,17 @@ def save_rate_movie(request):
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
 
+def save_watch_list(request, slug):
+    if request.POST.get('watchlist'):
+        user = request.user
+        imdb_id = request.POST.get('movie')
+        movie = Movie.objects.filter(imdb_id=imdb_id).first()
+        watch_list = WatchList(user=user, movie=movie)
+        watch_list.save()
+        return HttpResponse(json.dumps({'message': "OK"}), content_type='application/json')
+    return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
+
+
 class HomeView(TemplateView):
     template_name = "index.html"
 
