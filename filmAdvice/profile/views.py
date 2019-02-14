@@ -1,10 +1,11 @@
 from django.contrib.auth import logout, login, authenticate
 from django.urls import reverse
 from django.views.generic import FormView, CreateView, RedirectView, DetailView
+from django.shortcuts import redirect, render
 
 from filmAdvice.profile.mixins import LoginRequiredMixin
 from filmAdvice.profile.forms import RegisterForm, AuthenticationLoginForm
-from filmAdvice.profile.models import UserProfile
+from filmAdvice.profile.models import UserProfile, Relationship
 from filmAdvice.movie.models import Movie, Recommend, WatchHistory, WatchList
 
 
@@ -68,6 +69,20 @@ class ProfileDetailView(DetailView):
 
     def get_watch_list(self):
         return WatchList.objects.filter(user=self.get_user())
+
+    @staticmethod
+    def add_friend(request, username):
+        if request.user.is_authenticated():
+            user = UserProfile.objects.get_by_natural_key(username)
+            Relationship.objects.get_or_create(from_person=request.user, to_person=user)
+            return redirect('home')
+
+    @staticmethod
+    def show_friends(request, username):
+        user = UserProfile.objects.get_by_natural_key(username)
+        rel = user.relationships.filter(to_people__from_person=user)
+        args = {'friends': rel}
+        return render(request, "auth/friend_list.html", args)
 
 
 class WatchHistoryDetailView(DetailView):

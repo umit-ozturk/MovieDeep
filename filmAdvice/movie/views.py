@@ -57,6 +57,8 @@ def save_rate_movie(request):
     return HttpResponse(json.dumps({'message': "Something Went Wrong, Sorry :("}))
 
 
+@login_required
+@csrf_exempt
 def save_watch_list(request, slug):
     if request.POST.get('watchlist'):
         user = request.user

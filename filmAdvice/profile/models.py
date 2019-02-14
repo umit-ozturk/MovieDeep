@@ -6,6 +6,7 @@ from django.template.defaultfilters import slugify
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
+    relationships = models.ManyToManyField('self', through='Relationship', symmetrical=False, related_name='related_to')
     email = models.EmailField('E-posta', unique=True, null=False, blank=False)
     full_name = models.CharField('İsim', null=True, blank=True, max_length=200)
     phone = models.CharField('Telefon Numarası', null=True, blank=True, max_length=15)
@@ -44,3 +45,8 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
         if not self.id:  # if this is a new item
             self.slug = slugify(self.email.split("@")[0])
         super(UserProfile, self).save()
+
+
+class Relationship(models.Model):
+    from_person = models.ForeignKey(UserProfile, related_name='from_people', on_delete=models.CASCADE)
+    to_person = models.ForeignKey(UserProfile, related_name='to_people', on_delete=models.CASCADE)
