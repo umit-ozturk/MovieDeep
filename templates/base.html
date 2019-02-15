@@ -168,7 +168,7 @@
     {% endblock %}
     <script>
         function movieFormat(movies){
-            movieContent = "<div id='movie-detail' ><a href='/movie/" + movies.slug + "'> <img src='" + movies.get_movie_banner + "' style='max-width: 370px' class='img-responsive' alt='' /></a><form id='rate_button_submit' method='post'><input id='movie' type='hidden' value='" + movies.imdb_id +  "' name='vote' /><input id='rate' type='hidden' value='0' name='vote' /><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button type='button' id='button-1-rate' name='button-rate-1' value='1' class='rating-1 small'><span></span> So Bad</button><button id='button-2-rate-' type='button' name='button-rate-2' value='2' class='rating-2 small'><span></span> Bad</button><button id='button-3-rate' type='button' name='button-rate-3' value='3' class='rating-3 small'><span></span> Medium</button><button id='button-4-rate' type='button' name='button-rate-4' value='4' class='rating-4 small'><span></span> Good</button><button id='button-5-rate' type='button' name='button-rate-5' value='5' class='rating-5 small'><span></span> Awesome</button></div><div class='rating-skip action-button'><button  id='button-0-rate' type='button' value='0' name='button-rate-0'>Haven't Seen</button></div> </div></form></div>"
+            movieContent = "<form id='movie-detail' ><form id='button_watchlist' method='post'><button type='button' id='watchlist' name='button-watchlist' class='far fa-star' style='font-size: 30px; color: #6A1B9A; position: absolute;margin-top: 3%;cursor:pointer; margin-left:75%;background: border-box; border: black;display: block;'></button></form><a href='/movie/" + movies.slug + "'> <img src='" + movies.get_movie_banner + "' style='max-width: 370px' class='img-responsive' alt='' /></a><form id='rate_button_submit' method='post'><input id='movie' type='hidden' value='" + movies.imdb_id +  "' name='vote' /><input id='rate' type='hidden' value='0' name='vote' /><div id='quickrate' class='movies enabled rating'><div class='rating-buttons rate-buttons'><button type='button' id='button-1-rate' name='button-rate-1' value='1' class='rating-1 small'><span></span> So Bad</button><button id='button-2-rate-' type='button' name='button-rate-2' value='2' class='rating-2 small'><span></span> Bad</button><button id='button-3-rate' type='button' name='button-rate-3' value='3' class='rating-3 small'><span></span> Medium</button><button id='button-4-rate' type='button' name='button-rate-4' value='4' class='rating-4 small'><span></span> Good</button><button id='button-5-rate' type='button' name='button-rate-5' value='5' class='rating-5 small'><span></span> Awesome</button></div><div class='rating-skip action-button'><button  id='button-0-rate' type='button' value='0' name='button-rate-0'>Haven't Seen</button></div> </div></form></div>"
             return movieContent
         }
 
@@ -196,9 +196,28 @@
         });
 
         $('#movie_modal').on('shown.bs.modal', function(a) {
+            $('#watchlist').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'movies:save_rate_movie' %}",
+                    data: {
+                     'movie': $('#movie').val(),
+                     'watchlist': e.target.value,
+                    },
+                    success: function (results) {
+                        console.log(results)
+                        // movie = fetchMovie(results);
+                        // movie_html = movieFormat(movie);
+                        // $('#movie_content').html(movie_html);
+                        // $( "#movie_modal" ).trigger( "shown.bs.modal" );
+                    }
+                });
+            });
             $('#rate_button_submit').on('click', function(e) {
                 e.preventDefault();
                 $('#rate').val(e.target.value);
+                console.log(e.target.value)
                 $.ajax({
                     type: "POST",
                     url: "{% url 'movies:save_rate_movie' %}",

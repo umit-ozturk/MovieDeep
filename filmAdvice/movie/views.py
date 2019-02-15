@@ -33,6 +33,7 @@ def save_rate_movie(request):
         user = request.user
         imdb_id = request.POST.get('movie')
         if request.POST.get('watchlist'):
+            print(imdb_id)
             movie = Movie.objects.filter(imdb_id=imdb_id).first()
             watch_list = WatchList(user=user, movie=movie)
             watch_list.save()
