@@ -30,10 +30,12 @@ def get_random_movie_request(request):
 @csrf_exempt
 def save_rate_movie(request):
     if request.is_ajax():
+        print("Debug1")
+        print(request.POST)
         user = request.user
         imdb_id = request.POST.get('movie')
         if request.POST.get('watchlist'):
-            print(imdb_id)
+            print(request.POST.get('watchlist'))
             movie = Movie.objects.filter(imdb_id=imdb_id).first()
             watch_list = WatchList(user=user, movie=movie)
             watch_list.save()
