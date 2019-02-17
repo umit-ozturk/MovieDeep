@@ -197,8 +197,7 @@
         $('#movie_modal').on('shown.bs.modal', function(a) {
             $('#movie-detail').on('click', function(e) {
                 e.preventDefault();
-                $('#watchlist').val(e.target.value);
-                console.log($('#watchlist').val(e.target.value));
+                $('#watchlist').removeClass('far').addClass('fas');
                 $.ajax({
                     type: "POST",
                     url: "{% url 'movies:save_rate_movie' %}",
@@ -208,10 +207,12 @@
                     },
                     success: function (results) {
                         console.log(results)
-                        // movie = fetchMovie(results);
-                        // movie_html = movieFormat(movie);
-                        // $('#movie_content').html(movie_html);
-                        // $( "#movie_modal" ).trigger( "shown.bs.modal" );
+                        if(results['message'] == "OK") {
+                            movie = fetchMovie(results);
+                            movie_html = movieFormat(movie);
+                            $('#movie_content').html(movie_html);
+                            $( "#movie_modal" ).trigger( "shown.bs.modal" );
+                        }
                     }
                 });
             });
