@@ -71,18 +71,17 @@ class ProfileDetailView(DetailView):
         return WatchList.objects.filter(user=self.get_user())
 
     @staticmethod
-    def add_friend(request, username):
+    def add_friend(request, slug):
         if request.user.is_authenticated():
             user = UserProfile.objects.get_by_natural_key(username)
             Relationship.objects.get_or_create(from_person=request.user, to_person=user)
             return redirect('home')
 
     @staticmethod
-    def show_friends(request, username):
-        user = UserProfile.objects.get_by_natural_key(username)
+    def show_friends(request, slug):
+        user = UserProfile.objects.get(slug=slug)
         rel = user.relationships.filter(to_people__from_person=user)
-        args = {'friends': rel}
-        return render(request, "auth/friend_list.html", args)
+        return render(request, "auth/friend_list.html", {'friends': rel})
 
 
 class WatchHistoryDetailView(DetailView):

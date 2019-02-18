@@ -63,7 +63,7 @@
                     <a class="nav-link" href="{% url 'profiles:watch_list' request.user.slug %}">Watchlist</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="">Friends</a>
+                    <a class="nav-link" href="{% url 'profiles:friends_list' request.user.slug %}">Friends</a>
                   </li>
                 {% else %}
                   <li class="nav-item">

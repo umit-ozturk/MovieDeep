@@ -11,4 +11,5 @@ urlpatterns = [
     path('user/<str:slug>/', ProfileDetailView.as_view(template_name="auth/profile.html"), name='auth_profile'),
     path('history/<str:slug>/', WatchHistoryDetailView.as_view(template_name="movies/watch_history.html"), name='watch_history'),
     path('list/<str:slug>/', WatchListDetailView.as_view(template_name="movies/watch_list.html"), name='watch_list'),
+    path('friends/<str:slug>/', ProfileDetailView.show_friends, name='friends_list'),
 ]
