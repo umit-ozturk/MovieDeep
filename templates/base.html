@@ -197,7 +197,9 @@
         $('#movie_modal').on('shown.bs.modal', function(a) {
             $('#movie-detail').on('click', function(e) {
                 e.preventDefault();
-                $('#watchlist').removeClass('far').addClass('fas');
+                if(e.target.name == "button-watchlist"){
+                    $('#watchlist').removeClass('far').addClass('fas');
+                }
                 $.ajax({
                     type: "POST",
                     url: "{% url 'movies:save_rate_movie' %}",
