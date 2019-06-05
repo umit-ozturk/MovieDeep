@@ -1,4 +1,6 @@
-
+.media
+.ipynb_checkpoints
+.idea
 /filmAdvice/system/movies.csv
 /filmAdvice/system/ratings.csv
 /filmAdvice/system/tags.csv
