@@ -55,6 +55,8 @@ When you rate a movie, MovieDeep saves and predicts the movie. Also It prepare m
 
 ## Screenshots
 
+![Photo7](docs/images/img7.png)
+
 ![Photo2](docs/images/img2.png)
 
 
@@ -65,4 +67,7 @@ When you rate a movie, MovieDeep saves and predicts the movie. Also It prepare m
 
 
 ![Photo5](docs/images/img5.png)
+
+![Photo6](docs/images/img6.png)
+
 
