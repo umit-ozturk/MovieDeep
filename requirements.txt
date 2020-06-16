@@ -26,7 +26,7 @@ django-import-export==1.1.0
 djangorestframework==3.9.4
 entrypoints==0.2.3
 et-xmlfile==1.0.1
-Flask==0.12.3
+Flask==1.0
 gast==0.2.0
 google-api-python-client==1.7.4
 google-auth==1.6.1
