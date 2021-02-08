@@ -33,7 +33,7 @@ google-auth==1.6.1
 google-auth-httplib2==0.0.3
 grpcio==1.17.1
 h5py==2.8.0
-httplib2==0.12.0
+httplib2==0.19.0
 idna==2.7
 imdbpie==5.6.3
 ipykernel==5.1.0
