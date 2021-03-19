@@ -23,7 +23,7 @@ diskcache==2.9.0
 Django==2.2.13
 django-filter==2.0.0
 django-import-export==1.1.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 entrypoints==0.2.3
 et-xmlfile==1.0.1
 Flask==0.12.3
