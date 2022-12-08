@@ -10,7 +10,7 @@ bleach==3.1.4
 boto==2.48.0
 cachetools==3.0.0
 celery==4.2.1
-certifi==2018.8.24
+certifi==2022.12.7
 chardet==3.0.4
 Click==7.0
 coreapi==2.3.3
